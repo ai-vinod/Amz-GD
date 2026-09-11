@@ -7,7 +7,7 @@
 <meta name="description" content="A silver-plated Ganesh Shankh - auspicious, elegant, and quietly expensive-looking. Available on Amazon.in.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600&display=swap" rel="stylesheet">
 
 <script>
   const PIXEL_ID = 'YOUR_PIXEL_ID_HERE';
@@ -32,6 +32,9 @@
     --crimson:#E31E52;
     --gold:#C79A3E;
     --ink:#1A1A1A;
+    --kraft:#F1E3C4;
+    --kraft-edge:#C9AE7D;
+    --twine:#9C7B4F;
     --max:480px;
   }
 
@@ -49,12 +52,15 @@
   img{display:block;width:100%;height:auto;}
 
   h1,h2,h3{
-    font-family:"Playfair Display",Georgia,serif;
+    font-family:"Fraunces",Georgia,serif;
+    font-optical-sizing:auto;
+    font-weight:600;
     color:var(--maroon);
     margin:0 0 .5em;
-    line-height:1.15;
+    line-height:1.1;
+    letter-spacing:-0.02em;
   }
-  p{margin:0 0 1em;}
+  p{margin:0 0 1em;text-align:justify;}
 
   .wrap{max-width:var(--max);margin:0 auto;padding:0 20px;}
 
@@ -82,7 +88,7 @@
   .hero-media img{width:100%;}
 
   .hero-copy{padding-top:22px;}
-  .hero-copy h1{font-size:1.7rem;}
+  .hero-copy h1{font-size:34px;}
   .hero-sub{font-size:1rem;color:var(--ink);}
 
   .price-row{
@@ -92,8 +98,9 @@
     margin-bottom:14px;
   }
   .price-now{
-    font-family:"Playfair Display",Georgia,serif;
-    font-weight:700;
+    font-family:"Fraunces",Georgia,serif;
+    font-optical-sizing:auto;
+    font-weight:600;
     font-size:1.9rem;
     color:var(--maroon);
   }
@@ -102,8 +109,13 @@
     color:#8a8a8a;
     text-decoration:line-through;
   }
+  .price-note{
+    font-size:.75rem;
+    color:var(--maroon);
+    opacity:.7;
+  }
 
-  /* ---------- Code chip: gift-tag treatment ---------- */
+  /* ---------- Code chip: kraft-paper gift tag ---------- */
   .code-chip{
     position:relative;
     display:flex;
@@ -112,25 +124,55 @@
     gap:10px;
     margin:0 auto 16px;
     max-width:300px;
-    padding:14px 22px 14px 34px;
-    background:#fff;
-    border:1.5px solid var(--gold);
-    clip-path:polygon(22px 0,100% 0,100% 100%,22px 100%,0 50%);
+    padding:24px 22px 14px;
+    background:var(--kraft);
+    border:1px solid var(--kraft-edge);
+    border-radius:10px;
+    box-shadow:0 2px 6px rgba(0,0,0,.08);
     cursor:pointer;
     user-select:none;
     text-align:center;
   }
+  /* clipped top-right corner */
+  .code-chip::after{
+    content:"";
+    position:absolute;
+    top:-1px;
+    right:-1px;
+    width:18px;
+    height:18px;
+    background:var(--cream);
+    clip-path:polygon(100% 0, 100% 100%, 0 0);
+    z-index:3;
+    pointer-events:none;
+  }
+  /* punched hole */
   .code-chip::before{
     content:"";
     position:absolute;
-    left:9px;
-    top:50%;
-    transform:translateY(-50%);
-    width:7px;
-    height:7px;
+    left:50%;
+    top:9px;
+    transform:translateX(-50%);
+    width:8px;
+    height:8px;
     border-radius:50%;
-    border:1.5px solid var(--gold);
     background:var(--cream);
+    border:1.5px solid var(--kraft-edge);
+    z-index:3;
+  }
+  /* twine looped through the hole */
+  .code-chip .tag-twine{
+    position:absolute;
+    left:50%;
+    top:-6px;
+    width:20px;
+    height:11px;
+    transform:translateX(-50%);
+    border:1.5px solid var(--twine);
+    border-bottom:none;
+    border-radius:50% 50% 0 0;
+    z-index:2;
+    pointer-events:none;
   }
   .code-chip .code-label{
     display:block;
@@ -142,8 +184,9 @@
   }
   .code-chip .code-value{
     display:block;
-    font-family:"Playfair Display",Georgia,serif;
-    font-weight:700;
+    font-family:"Fraunces",Georgia,serif;
+    font-optical-sizing:auto;
+    font-weight:600;
     font-size:1.25rem;
     letter-spacing:.03em;
     color:var(--maroon);
@@ -151,12 +194,14 @@
   .code-chip .code-hint{
     display:block;
     font-size:.68rem;
-    color:var(--gold);
+    color:var(--maroon);
+    opacity:.7;
     margin-top:2px;
   }
   .code-chip .code-copied{
     position:absolute;
     inset:0;
+    z-index:1;
     display:flex;
     align-items:center;
     justify-content:center;
@@ -168,7 +213,7 @@
     transform:scale(.85);
     transition:opacity .22s ease, transform .22s ease;
     pointer-events:none;
-    clip-path:polygon(22px 0,100% 0,100% 100%,22px 100%,0 50%);
+    border-radius:10px;
   }
   .code-chip.is-copied .code-copied{opacity:1;transform:scale(1);}
 
@@ -199,36 +244,130 @@
   }
   .trust-strip p{
     margin:0;
-    font-size:.86rem;
-    text-align:left;
-    color:var(--ink);
+    font-family:"Fraunces",Georgia,serif;
+    font-optical-sizing:auto;
+    font-weight:600;
+    font-size:.92rem;
+    letter-spacing:.03em;
+    text-align:center;
+    color:var(--maroon);
+  }
+  .trust-strip .dot-sep{
+    color:var(--gold);
+    margin:0 2px;
+    font-weight:400;
   }
 
   /* ---------- Generic section ---------- */
-  section{padding:34px 0;}
-  section h2{font-size:1.4rem;}
+  section{padding:16px 0;}
+  section h2{font-size:24px;}
   section .body-text{font-size:.98rem;}
 
+  /* ---------- Product gallery ---------- */
+  .gallery-heading{
+    font-size:.95rem;
+    font-weight:600;
+    color:var(--maroon);
+    margin:20px 0 0;
+    text-align:left;
+  }
+  .gallery{margin:10px 0 0;}
+  .gallery-track{
+    display:flex;
+    overflow-x:auto;
+    scroll-snap-type:x mandatory;
+    -webkit-overflow-scrolling:touch;
+    scrollbar-width:none;
+    border-radius:2px;
+  }
+  .gallery-track::-webkit-scrollbar{display:none;}
+  .gallery-slide{
+    flex:0 0 100%;
+    scroll-snap-align:center;
+    scroll-snap-stop:always;
+  }
+  .gallery-dots{
+    display:flex;
+    justify-content:center;
+    gap:7px;
+    margin-top:12px;
+  }
+  .gallery-dots .dot{
+    width:6px;
+    height:6px;
+    border-radius:50%;
+    background:var(--maroon);
+    opacity:.3;
+    transition:opacity .2s ease;
+  }
+  .gallery-dots .dot.is-active{opacity:1;}
+
+  /* ---------- Product video ---------- */
+  .video-block{
+    position:relative;
+    margin-top:10px;
+    border-radius:2px;
+    overflow:hidden;
+    cursor:pointer;
+  }
+  .video-block video{
+    width:100%;
+    height:auto;
+    display:block;
+    border-radius:2px;
+  }
+  .video-play{
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    width:64px;
+    height:64px;
+    border-radius:50%;
+    background:rgba(123,20,32,.85);
+    border:1.5px solid rgba(251,234,212,.7);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:0;
+    cursor:pointer;
+    transition:opacity .2s ease;
+  }
+  .video-play-icon{
+    width:0;
+    height:0;
+    border-style:solid;
+    border-width:11px 0 11px 18px;
+    border-color:transparent transparent transparent var(--cream);
+    margin-left:3px;
+  }
+  .video-block.is-playing .video-play{opacity:0;pointer-events:none;}
+
   /* ---------- Photo detail ---------- */
-  .detail-block{margin-bottom:22px;}
+  .detail-block{margin-bottom:20px;}
   .detail-block:last-child{margin-bottom:0;}
-  .detail-block img{border-radius:2px;}
+  .detail-block img{
+    border-radius:2px;
+    aspect-ratio:1/1;
+    object-fit:cover;
+  }
   .detail-caption{
     font-size:.85rem;
     color:var(--maroon);
     margin-top:8px;
     font-weight:600;
+    text-align:left;
   }
 
   /* ---------- Occasions ---------- */
-  .occasion-media{margin-top:18px;border-radius:2px;overflow:hidden;}
+  .occasion-media{margin-top:20px;border-radius:2px;overflow:hidden;}
 
   /* ---------- Finish comparison ---------- */
   .finish-grid{
     display:grid;
     grid-template-columns:1fr 1fr;
     gap:12px;
-    margin-top:18px;
+    margin-top:20px;
   }
   .finish-card img{border-radius:2px;}
   .finish-card .finish-label{
@@ -269,15 +408,14 @@
     display:flex;
     align-items:center;
     justify-content:center;
-    font-family:"Playfair Display",Georgia,serif;
-    font-weight:700;
+    font-family:"Fraunces",Georgia,serif;
+    font-optical-sizing:auto;
+    font-weight:600;
     font-size:.95rem;
   }
 
   /* ---------- Closing ---------- */
-  .closing{text-align:left;}
-  .closing .code-chip{margin-left:0;margin-right:auto;}
-  .closing .cta-btn{margin-left:0;}
+  .closing{text-align:center;}
 
   /* ---------- Footer ---------- */
   footer.site{
@@ -318,11 +456,20 @@
   }
   .sticky-bar.is-visible{transform:translateY(0);}
   .sticky-bar .sticky-price{
-    font-family:"Playfair Display",Georgia,serif;
-    font-weight:700;
+    font-family:"Fraunces",Georgia,serif;
+    font-optical-sizing:auto;
+    font-weight:600;
     color:var(--maroon);
     font-size:1.05rem;
     white-space:nowrap;
+  }
+  .sticky-bar .sticky-was{
+    font-family:-apple-system,"Segoe UI",Roboto,sans-serif;
+    font-weight:400;
+    font-size:.82rem;
+    color:#8a8a8a;
+    text-decoration:line-through;
+    margin-left:4px;
   }
   .sticky-bar .cta-btn{
     max-width:none;
@@ -352,10 +499,13 @@
   <p class="hero-sub">A silver-plated Ganesh Shankh - auspicious, elegant, and quietly expensive-looking. The kind of gift that earns a permanent place in the room.</p>
 
   <div class="price-row">
-    <span class="price-now">₹1,899</span>
+    <span class="price-now">₹1,599</span>
+    <span class="price-was">₹1,899</span>
+    <span class="price-note">with code</span>
   </div>
 
   <div class="code-chip" data-code="GANESH300">
+    <span class="tag-twine"></span>
     <div>
       <span class="code-label">Use code</span>
       <span class="code-value">GANESH300</span>
@@ -369,7 +519,7 @@
 
 <div class="wrap">
   <div class="trust-strip">
-    <p>5.5 inch / 13.5 cm · Elite silver-plated finish · Arrives in gift box · Delivered by Amazon India</p>
+    <p>5.5 inch / 13.5 cm <span class="dot-sep">·</span> Elite silver-plated finish<br>Arrives in gift box <span class="dot-sep">·</span> Delivered by Amazon India</p>
   </div>
 </div>
 
@@ -378,6 +528,28 @@
     <h2>Why it's worth gifting</h2>
     <p class="body-text">Status is not something you say. It is something people see.</p>
     <p class="body-text">A Ganesh Shankh in polished silver plating does exactly that - it signals taste, tradition and prosperity in one object. Auspicious enough for the most traditional home, refined enough for the most modern one. Detailed enough to hold attention, it tells the receiver you chose carefully instead of shopping quickly. They'll place it where visitors look first, and yours will be the gift they mention.</p>
+
+    <p class="gallery-heading">The exact piece you'll receive — swipe through</p>
+    <div class="gallery" id="productGallery">
+      <div class="gallery-track">
+        <div class="gallery-slide"><img src="Images/Exact%20Product%201.jpeg" alt="Silver-plated Ganesh Shankh, product photo 1" loading="lazy" width="700" height="700"></div>
+        <div class="gallery-slide"><img src="Images/Exact%20Product%202.jpeg" alt="Silver-plated Ganesh Shankh, product photo 2" loading="lazy" width="700" height="700"></div>
+        <div class="gallery-slide"><img src="Images/Exact%20Product%203.jpeg" alt="Silver-plated Ganesh Shankh, product photo 3" loading="lazy" width="700" height="700"></div>
+      </div>
+      <div class="gallery-dots">
+        <span class="dot is-active"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+      </div>
+    </div>
+
+    <p class="gallery-heading">See it in hand — 15 seconds</p>
+    <div class="video-block" id="productVideo">
+      <video src="Video/shankh-15s.mp4" poster="Images/Exact%20Product%202.jpeg" muted playsinline loop preload="metadata" width="700" height="700"></video>
+      <button class="video-play" type="button" aria-label="Play video">
+        <span class="video-play-icon"></span>
+      </button>
+    </div>
   </section>
 
   <section>
@@ -434,9 +606,10 @@
   </section>
 
   <section class="closing">
-    <h2>Ordinary gifts get thanked once. This one gets admired every day.</h2>
+    <h2>Ordinary gifts get thanked once.<br>This one gets admired every day.</h2>
 
     <div class="code-chip" data-code="GANESH300">
+      <span class="tag-twine"></span>
       <div>
         <span class="code-label">Use code</span>
         <span class="code-value">GANESH300</span>
@@ -455,7 +628,7 @@
 </footer>
 
 <div class="sticky-bar" id="stickyBar">
-  <span class="sticky-price">₹1,899</span>
+  <span class="sticky-price">₹1,599 <span class="sticky-was">₹1,899</span></span>
   <a href="#" class="cta-btn" data-cta="sticky">Buy on Amazon</a>
 </div>
 
@@ -499,6 +672,41 @@
       }
     }
   }, { passive: true });
+
+  // Product video — tap-to-play overlay
+  const videoBlock = document.getElementById('productVideo');
+  if (videoBlock) {
+    const video = videoBlock.querySelector('video');
+    const playBtn = videoBlock.querySelector('.video-play');
+
+    function togglePlay() {
+      if (video.paused) { video.play(); } else { video.pause(); }
+    }
+
+    playBtn.addEventListener('click', function (e) {
+      e.stopPropagation();
+      togglePlay();
+    });
+    videoBlock.addEventListener('click', togglePlay);
+    video.addEventListener('play', function () { videoBlock.classList.add('is-playing'); });
+    video.addEventListener('pause', function () { videoBlock.classList.remove('is-playing'); });
+  }
+
+  // Product gallery — sync dots to swipe position
+  const gallery = document.getElementById('productGallery');
+  if (gallery) {
+    const track = gallery.querySelector('.gallery-track');
+    const dots = gallery.querySelectorAll('.dot');
+    const observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          const index = Array.from(track.children).indexOf(entry.target);
+          dots.forEach(function (dot, i) { dot.classList.toggle('is-active', i === index); });
+        }
+      });
+    }, { root: track, threshold: 0.6 });
+    track.querySelectorAll('.gallery-slide').forEach(function (slide) { observer.observe(slide); });
+  }
 
   // Tap to copy the discount code
   document.querySelectorAll('[data-code]').forEach(function (codeEl) {

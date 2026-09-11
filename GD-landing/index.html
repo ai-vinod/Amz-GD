@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>GoDivinely — Silver-Plated Ganesh Shankh</title>
+<meta name="description" content="A silver-plated Ganesh Shankh — auspicious, elegant, and quietly expensive-looking. Available on Amazon.in.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+
+<script>
+  const PIXEL_ID = 'YOUR_PIXEL_ID_HERE';
+  const AMAZON_URL = 'https://www.amazon.in/dp/YOUR_ASIN_HERE';
+
+  // --- Meta base pixel ---
+  !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+  n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+  document,'script','https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', PIXEL_ID);
+  fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+  src="https://www.facebook.com/tr?id=YOUR_PIXEL_ID_HERE&ev=PageView&noscript=1"/></noscript>
+
+<style>
+  :root{
+    --cream:#FBEAD4;
+    --maroon:#7B1420;
+    --crimson:#E31E52;
+    --gold:#C79A3E;
+    --ink:#1A1A1A;
+    --max:480px;
+  }
+
+  *{box-sizing:border-box;}
+  html{background:var(--cream);}
+  body{
+    margin:0;
+    background:var(--cream);
+    color:var(--ink);
+    font-family:-apple-system,"Segoe UI",Roboto,sans-serif;
+    font-size:16px;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  img{display:block;width:100%;height:auto;}
+
+  h1,h2,h3{
+    font-family:"Playfair Display",Georgia,serif;
+    color:var(--maroon);
+    margin:0 0 .5em;
+    line-height:1.15;
+  }
+  p{margin:0 0 1em;}
+
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 20px;}
+
+  /* ---------- Header ---------- */
+  header.site{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:14px 20px;
+    display:flex;
+    align-items:center;
+  }
+  header.site img{
+    width:110px;
+    height:auto;
+    mix-blend-mode:multiply;
+  }
+
+  /* ---------- Hero ---------- */
+  .hero-media{
+    width:100%;
+    max-width:var(--max);
+    margin:0 auto;
+    overflow:hidden;
+  }
+  .hero-media img{width:100%;}
+
+  .hero-copy{padding-top:22px;}
+  .hero-copy h1{font-size:1.7rem;}
+  .hero-sub{font-size:1rem;color:var(--ink);}
+
+  .price-row{
+    display:flex;
+    align-items:baseline;
+    gap:10px;
+    margin-bottom:14px;
+  }
+  .price-now{
+    font-family:"Playfair Display",Georgia,serif;
+    font-weight:700;
+    font-size:1.9rem;
+    color:var(--maroon);
+  }
+  .price-was{
+    font-size:1rem;
+    color:#8a8a8a;
+    text-decoration:line-through;
+  }
+
+  /* ---------- Code chip: gift-tag treatment ---------- */
+  .code-chip{
+    position:relative;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+    margin:0 auto 16px;
+    max-width:300px;
+    padding:14px 22px 14px 34px;
+    background:#fff;
+    border:1.5px solid var(--gold);
+    clip-path:polygon(22px 0,100% 0,100% 100%,22px 100%,0 50%);
+    cursor:pointer;
+    user-select:none;
+    text-align:center;
+  }
+  .code-chip::before{
+    content:"";
+    position:absolute;
+    left:9px;
+    top:50%;
+    transform:translateY(-50%);
+    width:7px;
+    height:7px;
+    border-radius:50%;
+    border:1.5px solid var(--gold);
+    background:var(--cream);
+  }
+  .code-chip .code-label{
+    display:block;
+    font-size:.68rem;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--maroon);
+    opacity:.75;
+  }
+  .code-chip .code-value{
+    display:block;
+    font-family:"Playfair Display",Georgia,serif;
+    font-weight:700;
+    font-size:1.25rem;
+    letter-spacing:.03em;
+    color:var(--maroon);
+  }
+  .code-chip .code-hint{
+    display:block;
+    font-size:.68rem;
+    color:var(--gold);
+    margin-top:2px;
+  }
+  .code-chip .code-copied{
+    position:absolute;
+    inset:0;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:var(--maroon);
+    color:#fff;
+    font-size:.95rem;
+    font-weight:600;
+    opacity:0;
+    transform:scale(.85);
+    transition:opacity .22s ease, transform .22s ease;
+    pointer-events:none;
+    clip-path:polygon(22px 0,100% 0,100% 100%,22px 100%,0 50%);
+  }
+  .code-chip.is-copied .code-copied{opacity:1;transform:scale(1);}
+
+  .cta-btn{
+    display:block;
+    width:100%;
+    max-width:340px;
+    margin:0 auto;
+    padding:15px 20px;
+    background:var(--maroon);
+    color:#fff;
+    text-align:center;
+    text-decoration:none;
+    font-size:1.02rem;
+    font-weight:600;
+    border:none;
+    border-radius:2px;
+    letter-spacing:.01em;
+  }
+  .hero-copy .cta-btn{margin-top:4px;}
+
+  /* ---------- Trust strip ---------- */
+  .trust-strip{
+    border-top:1px solid var(--gold);
+    border-bottom:1px solid var(--gold);
+    padding:14px 0;
+    margin:26px 0 0;
+  }
+  .trust-strip p{
+    margin:0;
+    font-size:.86rem;
+    text-align:left;
+    color:var(--ink);
+  }
+
+  /* ---------- Generic section ---------- */
+  section{padding:34px 0;}
+  section h2{font-size:1.4rem;}
+  section .body-text{font-size:.98rem;}
+
+  /* ---------- Photo detail ---------- */
+  .detail-block{margin-bottom:22px;}
+  .detail-block:last-child{margin-bottom:0;}
+  .detail-block img{border-radius:2px;}
+  .detail-caption{
+    font-size:.85rem;
+    color:var(--maroon);
+    margin-top:8px;
+    font-weight:600;
+  }
+
+  /* ---------- Occasions ---------- */
+  .occasion-media{margin-top:18px;border-radius:2px;overflow:hidden;}
+
+  /* ---------- Finish comparison ---------- */
+  .finish-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:12px;
+    margin-top:18px;
+  }
+  .finish-card img{border-radius:2px;}
+  .finish-card .finish-label{
+    text-align:center;
+    font-size:.8rem;
+    font-weight:600;
+    margin-top:8px;
+  }
+  .finish-card.is-other .finish-label{color:#7a7a7a;}
+  .finish-card.is-godivinely .finish-label{color:var(--maroon);}
+
+  /* ---------- How it works ---------- */
+  .steps{
+    list-style:none;
+    counter-reset:step;
+    margin:18px 0 0;
+    padding:0;
+  }
+  .steps li{
+    counter-increment:step;
+    position:relative;
+    padding-left:44px;
+    margin-bottom:20px;
+    font-size:.98rem;
+    min-height:32px;
+  }
+  .steps li:last-child{margin-bottom:0;}
+  .steps li::before{
+    content:counter(step);
+    position:absolute;
+    left:0;
+    top:-2px;
+    width:30px;
+    height:30px;
+    border:1.5px solid var(--maroon);
+    color:var(--maroon);
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-family:"Playfair Display",Georgia,serif;
+    font-weight:700;
+    font-size:.95rem;
+  }
+
+  /* ---------- Closing ---------- */
+  .closing{text-align:left;}
+  .closing .code-chip{margin-left:0;margin-right:auto;}
+  .closing .cta-btn{margin-left:0;}
+
+  /* ---------- Footer ---------- */
+  footer.site{
+    padding:30px 20px 110px;
+    max-width:var(--max);
+    margin:0 auto;
+    text-align:center;
+  }
+  footer.site img{
+    width:90px;
+    height:auto;
+    margin:0 auto 10px;
+    mix-blend-mode:multiply;
+  }
+  footer.site p{
+    font-size:.78rem;
+    color:#6b6b6b;
+    margin:0;
+  }
+
+  /* ---------- Sticky mobile bar ---------- */
+  .sticky-bar{
+    position:fixed;
+    left:0;
+    right:0;
+    bottom:0;
+    z-index:50;
+    background:#fff;
+    border-top:1px solid var(--gold);
+    padding:10px 16px;
+    display:none;
+    align-items:center;
+    justify-content:space-between;
+    gap:14px;
+    transform:translateY(100%);
+    transition:transform .25s ease;
+    box-shadow:0 -4px 14px rgba(0,0,0,.08);
+  }
+  .sticky-bar.is-visible{transform:translateY(0);}
+  .sticky-bar .sticky-price{
+    font-family:"Playfair Display",Georgia,serif;
+    font-weight:700;
+    color:var(--maroon);
+    font-size:1.05rem;
+    white-space:nowrap;
+  }
+  .sticky-bar .cta-btn{
+    max-width:none;
+    width:auto;
+    flex:0 0 auto;
+    padding:11px 22px;
+    font-size:.92rem;
+  }
+
+  @media (max-width:767px){
+    .sticky-bar{display:flex;}
+  }
+</style>
+</head>
+<body>
+
+<header class="site">
+  <img src="Images/web/logo.png" alt="GoDivinely" width="220" height="130">
+</header>
+
+<div class="hero-media">
+  <img src="Images/web/hero.jpg" alt="Silver-plated Ganesh Shankh seated in an open red velvet gift box" width="800" height="800" fetchpriority="high">
+</div>
+
+<div class="wrap hero-copy">
+  <h1>Most Gifts Get Stored. This One Gets Displayed.</h1>
+  <p class="hero-sub">A silver-plated Ganesh Shankh — auspicious, elegant, and quietly expensive-looking. The kind of gift that earns a permanent place in the room.</p>
+
+  <div class="price-row">
+    <span class="price-now">₹1,899</span>
+  </div>
+
+  <div class="code-chip" data-code="GANESH300">
+    <div>
+      <span class="code-label">Use code</span>
+      <span class="code-value">GANESH300</span>
+      <span class="code-hint">₹300 off at checkout · tap to copy</span>
+    </div>
+    <span class="code-copied">Copied!</span>
+  </div>
+
+  <a href="#" class="cta-btn" data-cta="hero">Buy on Amazon</a>
+</div>
+
+<div class="wrap">
+  <div class="trust-strip">
+    <p>5.5 inch / 13.5 cm · Elite silver-plated finish · Arrives in gift box · Delivered by Amazon India</p>
+  </div>
+</div>
+
+<div class="wrap">
+  <section>
+    <h2>Why it's worth gifting</h2>
+    <p class="body-text">Status is not something you say. It is something people see.</p>
+    <p class="body-text">A Ganesh Shankh in polished silver plating does exactly that — it signals taste, tradition and prosperity in one object. Auspicious enough for the most traditional home, refined enough for the most modern one. Detailed enough to hold attention, it tells the receiver you chose carefully instead of shopping quickly. They'll place it where visitors look first, and yours will be the gift they mention.</p>
+  </section>
+
+  <section>
+    <h2>Every detail, up close</h2>
+
+    <div class="detail-block">
+      <img src="Images/web/product-detail.jpg" alt="Close-up of the deep-relief silver Ganesh carving" loading="lazy" width="700" height="700">
+      <p class="detail-caption">Deep-relief carving, hand-finished</p>
+    </div>
+
+    <div class="detail-block">
+      <img src="Images/web/shelf.jpg" alt="Ganesh Shankh displayed on a mandir shelf with diyas and marigolds" loading="lazy" width="700" height="486">
+      <p class="detail-caption">At home on a mandir shelf, console, or work desk</p>
+    </div>
+
+    <div class="detail-block">
+      <img src="Images/web/scale.jpg" alt="Ganesh Shankh held in a palm, showing its compact size" loading="lazy" width="600" height="848">
+      <p class="detail-caption">5.5 inch / 13.5 cm — fits in your palm</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>Gifting occasions</h2>
+    <p class="body-text">Griha pravesh and housewarmings, weddings and anniversaries, Diwali hampers, milestone birthdays, or the client you cannot afford to gift casually. It suits elders who value tradition and younger couples who want their home to look considered — and it is just as easy to keep for your own pooja room.</p>
+    <div class="occasion-media">
+      <img src="Images/web/occasion.jpg" alt="Ganesh Shankh beside a wrapped gift box" loading="lazy" width="700" height="486">
+    </div>
+  </section>
+
+  <section>
+    <h2>Finish comparison</h2>
+    <p class="body-text">A plain shankh looks like a puja shelf item. A rich silver-plated finish over intricate Ganesh detailing changes the category entirely — it reflects light, photographs beautifully, and reads as a collector's piece.</p>
+
+    <div class="finish-grid">
+      <div class="finish-card is-other">
+        <img src="Images/web/finish-shiny.jpg" alt="Plain shiny silver finish, carving detail lost in glare" loading="lazy" width="500" height="605">
+        <p class="finish-label">Shiny finish — detail lost in glare</p>
+      </div>
+      <div class="finish-card is-godivinely">
+        <img src="Images/web/finish-antique.jpg" alt="GoDivinely antique dual-tone finish with every carved detail visible" loading="lazy" width="500" height="605">
+        <p class="finish-label">GoDivinely antique dual-tone — every detail visible</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>How the code works</h2>
+    <ol class="steps">
+      <li>Copy your exclusive ₹300 code from this page</li>
+      <li>Click the button to open the Amazon listing</li>
+      <li>Apply the code at checkout before paying</li>
+    </ol>
+    <a href="#" class="cta-btn" data-cta="steps" style="margin-top:24px;">Buy on Amazon</a>
+  </section>
+
+  <section class="closing">
+    <h2>Ordinary gifts get thanked once. This one gets admired every day.</h2>
+
+    <div class="code-chip" data-code="GANESH300">
+      <div>
+        <span class="code-label">Use code</span>
+        <span class="code-value">GANESH300</span>
+        <span class="code-hint">₹300 off at checkout · tap to copy</span>
+      </div>
+      <span class="code-copied">Copied!</span>
+    </div>
+
+    <a href="#" class="cta-btn" data-cta="closing">Buy on Amazon</a>
+  </section>
+</div>
+
+<footer class="site">
+  <img src="Images/web/logo.png" alt="GoDivinely" width="220" height="130" loading="lazy">
+  <p>Available on Amazon.in. Payment and delivery handled entirely by Amazon.</p>
+</footer>
+
+<div class="sticky-bar" id="stickyBar">
+  <span class="sticky-price">₹1,899</span>
+  <a href="#" class="cta-btn" data-cta="sticky">Buy on Amazon</a>
+</div>
+
+<script>
+(function () {
+  const fired = new Set();
+
+  function once(key, fn) {
+    if (fired.has(key)) return;
+    fired.add(key);
+    fn();
+  }
+
+  // Engaged view — 3 seconds on page
+  setTimeout(function () {
+    once('view', function () {
+      fbq('track', 'ViewContent', {
+        content_name: 'Silver Ganesh Shankh',
+        content_type: 'product'
+      });
+    });
+  }, 3000);
+
+  // Scroll depth + sticky bar reveal
+  const hero = document.querySelector('.hero-media');
+  const stickyBar = document.getElementById('stickyBar');
+
+  window.addEventListener('scroll', function () {
+    const doc = document.documentElement;
+    const depth = (window.scrollY + window.innerHeight) / doc.scrollHeight * 100;
+
+    if (depth >= 50) once('s50', function () { fbq('trackCustom', 'Scroll50'); });
+    if (depth >= 90) once('s90', function () { fbq('trackCustom', 'Scroll90'); });
+
+    if (stickyBar && hero) {
+      const heroBottom = hero.getBoundingClientRect().bottom;
+      if (heroBottom < 0) {
+        stickyBar.classList.add('is-visible');
+      } else {
+        stickyBar.classList.remove('is-visible');
+      }
+    }
+  }, { passive: true });
+
+  // Tap to copy the discount code
+  document.querySelectorAll('[data-code]').forEach(function (codeEl) {
+    codeEl.addEventListener('click', function () {
+      const code = codeEl.dataset.code;
+      navigator.clipboard.writeText(code).then(function () {
+        codeEl.classList.add('is-copied');
+        setTimeout(function () { codeEl.classList.remove('is-copied'); }, 2000);
+      });
+      once('copy', function () {
+        fbq('trackCustom', 'CopyCode', { code: code });
+      });
+    });
+  });
+
+  // Outbound click to Amazon — the money event
+  document.querySelectorAll('[data-cta]').forEach(function (btn) {
+    btn.addEventListener('click', function (e) {
+      e.preventDefault();
+      const position = btn.dataset.cta;
+
+      fbq('track', 'InitiateCheckout', {
+        content_name: 'Silver Ganesh Shankh',
+        button_position: position,
+        value: 1599,
+        currency: 'INR'
+      });
+
+      // Small delay so the event reaches Meta before the page unloads
+      setTimeout(function () { window.location.href = AMAZON_URL; }, 300);
+    });
+  });
+})();
+</script>
+
+</body>
+</html>

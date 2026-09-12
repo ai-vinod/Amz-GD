@@ -20,27 +20,26 @@ expensive-looking. The kind of gift that earns a permanent place in the room.
 
 ## Why it's worth gifting
 
-Status is not something you say. It is something people see.
+Status is not something you say. 
+Status is something people see!
 
-A Ganesh Shankh in polished silver plating does exactly that - it signals
-taste, tradition and prosperity in one object. Auspicious enough for the most
-traditional home, refined enough for the most modern one. Detailed enough to
-hold attention, it tells the receiver you chose carefully instead of shopping
-quickly. They'll place it where visitors look first, and yours will be the gift
-they mention.
+A Ganesh Shankh in polished silver plating signals taste, tradition and prosperity in one object.
+
+It's auspicious enough for the most traditional home, refined enough for the most modern one. 
+
+They'll place it where visitors look first, and yours will be the gift they mention!
 
 ## Gifting occasions
 
-Griha pravesh and housewarmings, weddings and anniversaries, Diwali hampers,
-milestone birthdays, or the client you cannot afford to gift casually. It suits
-elders who value tradition and younger couples who want their home to look
-considered - and it is just as easy to keep for your own pooja room.
+Best gift for Griha pravesh, weddings, anniversaries, Diwali hampers, and milestone birthdays. 
+
+It suits elders who value tradition and younger couples who want their home to look considered.
+
+You can also keep this in your own pooja room.
 
 ## Finish comparison
 
-A plain shankh looks like a puja shelf item. A rich silver-plated finish over
-intricate Ganesh detailing changes the category entirely - it reflects light,
-photographs beautifully, and reads as a collector's piece.
+A plain shankh looks like a puja shelf item. A rich silver-plated finish over intricate Ganesh detailing changes the category entirely - it reflects light, photographs beautifully, and reads as a collector's piece.
 
 ## How the code works
 
@@ -50,7 +49,8 @@ photographs beautifully, and reads as a collector's piece.
 
 ## Closing line
 
-Ordinary gifts get thanked once. This one gets admired every day.
+Ordinary gifts get thanked once.
+This one gets admired every day.
 
 ---
 

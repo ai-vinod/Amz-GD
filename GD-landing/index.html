@@ -279,48 +279,6 @@
     margin:20px 0 0;
     text-align:left;
   }
-  .gallery{margin:10px 0 0;}
-  .gallery-track{
-    display:flex;
-    overflow-x:auto;
-    scroll-snap-type:x mandatory;
-    -webkit-overflow-scrolling:touch;
-    scrollbar-width:none;
-    border-radius:2px;
-  }
-  .gallery-track::-webkit-scrollbar{display:none;}
-  .gallery-slide{
-    flex:0 0 100%;
-    scroll-snap-align:center;
-    scroll-snap-stop:always;
-    aspect-ratio:1/1;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    overflow:hidden;
-    background:var(--cream);
-  }
-  .gallery-slide img{
-    width:100%;
-    height:100%;
-    object-fit:contain;
-  }
-  .gallery-dots{
-    display:flex;
-    justify-content:center;
-    gap:7px;
-    margin-top:12px;
-  }
-  .gallery-dots .dot{
-    width:6px;
-    height:6px;
-    border-radius:50%;
-    background:var(--maroon);
-    opacity:.3;
-    transition:opacity .2s ease;
-  }
-  .gallery-dots .dot.is-active{opacity:1;}
-
   /* ---------- Product video ---------- */
   .video-block{
     position:relative;
@@ -550,34 +508,11 @@
 <div class="wrap">
   <section>
     <h2>Why it's worth gifting</h2>
-    <p class="body-text">Status is not something you say.<br>Status is something people see!</p>
+    <p class="body-text">Status is not something you say. It's something people see.</p>
     <p class="body-text">A Ganesh Shankh in polished silver plating signals taste, tradition and prosperity in one object.</p>
     <p class="body-text">It's auspicious enough for the most traditional home, refined enough for the most modern one.</p>
-    <p class="body-text">They'll place it where visitors look first, and yours will be the gift they mention!</p>
+    <p class="body-text">They'll place it where visitors look first, and yours will be the gift they mention.</p>
 
-    <p class="gallery-heading">The exact piece you'll receive — swipe through</p>
-    <div class="gallery" id="productGallery">
-      <div class="gallery-track">
-        <div class="gallery-slide"><img src="Images/Amazon%20image.png" alt="Silver-plated Ganesh Shankh, product photo 1" loading="lazy" width="700" height="700"></div>
-        <div class="gallery-slide"><img src="Images/Exact%20Product%202.jpeg" alt="Silver-plated Ganesh Shankh, product photo 2" loading="lazy" width="700" height="700"></div>
-        <div class="gallery-slide"><img src="Images/A1.png" alt="Silver-plated Ganesh Shankh, product photo 3" loading="lazy" width="700" height="700"></div>
-        <div class="gallery-slide"><img src="Images/A6.png" alt="Silver-plated Ganesh Shankh, product photo 4" loading="lazy" width="700" height="700"></div>
-      </div>
-      <div class="gallery-dots">
-        <span class="dot is-active"></span>
-        <span class="dot"></span>
-        <span class="dot"></span>
-        <span class="dot"></span>
-      </div>
-    </div>
-
-    <p class="gallery-heading">See it in hand — 15 seconds</p>
-    <div class="video-block" id="productVideo">
-      <video src="Video/shankh-15s.mp4" poster="Images/Exact%20Product%202.jpeg" muted playsinline loop preload="metadata" width="700" height="700"></video>
-      <button class="video-play" type="button" aria-label="Play video">
-        <span class="video-play-icon"></span>
-      </button>
-    </div>
   </section>
 
   <section>
@@ -596,6 +531,14 @@
     <div class="detail-block">
       <img src="Images/web/scale.jpg" alt="Ganesh Shankh held in a palm, showing its compact size" loading="lazy" width="600" height="848">
       <p class="detail-caption">5.5 inch / 13.5 cm — fits in your palm</p>
+    </div>
+
+    <p class="gallery-heading">See it in hand — 15 seconds</p>
+    <div class="video-block" id="productVideo">
+      <video src="Video/shankh-15s.mp4" poster="Images/Exact%20Product%202.jpeg" muted playsinline loop preload="metadata" width="700" height="700"></video>
+      <button class="video-play" type="button" aria-label="Play video">
+        <span class="video-play-icon"></span>
+      </button>
     </div>
   </section>
 
@@ -722,22 +665,6 @@
     videoBlock.addEventListener('click', togglePlay);
     video.addEventListener('play', function () { videoBlock.classList.add('is-playing'); });
     video.addEventListener('pause', function () { videoBlock.classList.remove('is-playing'); });
-  }
-
-  // Product gallery — sync dots to swipe position
-  const gallery = document.getElementById('productGallery');
-  if (gallery) {
-    const track = gallery.querySelector('.gallery-track');
-    const dots = gallery.querySelectorAll('.dot');
-    const observer = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
-        if (entry.isIntersecting) {
-          const index = Array.from(track.children).indexOf(entry.target);
-          dots.forEach(function (dot, i) { dot.classList.toggle('is-active', i === index); });
-        }
-      });
-    }, { root: track, threshold: 0.6 });
-    track.querySelectorAll('.gallery-slide').forEach(function (slide) { observer.observe(slide); });
   }
 
   // Tap to copy the discount code

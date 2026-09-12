@@ -20,14 +20,13 @@ expensive-looking. The kind of gift that earns a permanent place in the room.
 
 ## Why it's worth gifting
 
-Status is not something you say. 
-Status is something people see!
+Status is not something you say. It's something people see.
 
 A Ganesh Shankh in polished silver plating signals taste, tradition and prosperity in one object.
 
 It's auspicious enough for the most traditional home, refined enough for the most modern one. 
 
-They'll place it where visitors look first, and yours will be the gift they mention!
+They'll place it where visitors look first, and yours will be the gift they mention.
 
 ## Gifting occasions
 

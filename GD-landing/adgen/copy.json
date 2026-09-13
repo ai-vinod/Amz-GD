@@ -1,0 +1,86 @@
+{
+  "_comment": "Edit this file, run `node generate.js`, get every variant in every size. The `safe` values are Meta's 2026 safe zones — read README.md before changing them.",
+
+  "guides": false,
+
+  "brand": {
+    "logo": "../Images/web/logo.png",
+    "priceNow": "\u20b91,599",
+    "priceWas": "\u20b91,899",
+    "codeLabel": "Use code",
+    "code": "GANESH300"
+  },
+
+  "sizes": [
+    {
+      "name": "4x5-feed",
+      "_use": "Facebook and Instagram Feed, single image. Meta's recommended image ratio.",
+      "_safeSource": "No UI covers a Feed image, but Advantage+ re-crops top and bottom equally across placements. 250px top/bottom, 100px sides.",
+      "_logo": "Off. In Feed your Page name and avatar already sit directly above the creative, so a logo inside the image is a duplicate that costs the product 150px.",
+      "w": 1080,
+      "h": 1350,
+      "logo": false,
+      "gap": 40,
+      "headlineSize": 62,
+      "safe": { "top": 250, "bottom": 250, "side": 100 }
+    },
+    {
+      "name": "1x1-carousel",
+      "_use": "Carousel cards, Marketplace, Right Column, Messenger. Carousel cards MUST be 1:1 — Meta crops 4:5 cards and cuts off the top and bottom.",
+      "_safeSource": "Instagram applies a slight crop even to correctly sized squares. Keep key elements inside a centred 1000x1000.",
+      "w": 1080,
+      "h": 1080,
+      "logo": false,
+      "gap": 34,
+      "headlineSize": 56,
+      "safe": { "top": 100, "bottom": 100, "side": 100 }
+    },
+    {
+      "name": "9x16-reels",
+      "_use": "Reels and Stories. Built to the Reels margin, the stricter of the two, so one asset is safe on both.",
+      "_safeSource": "Top 14% (270px) profile name and timestamp. Bottom 35% (670px) on Reels for the like/comment/share stack, audio label and caption — Stories needs only 20% (380px), so designing to 670 covers both. Sides 6% (65px), widened to 90px for Smart Zoom on 20:9 devices.",
+      "_logo": "On. Reels shows the account name small and low-contrast over the video, so the logo earns its place here.",
+      "w": 1080,
+      "h": 1920,
+      "logo": true,
+      "gap": 44,
+      "headlineSize": 62,
+      "safe": { "top": 270, "bottom": 670, "side": 90 }
+    }
+  ],
+
+  "variants": [
+    {
+      "id": "01-displayed",
+      "headline": "Most gifts get stored. This one gets displayed.",
+      "subline": "Silver-plated Ganesh Shankh, in a gift box.",
+      "image": "../Images/web/hero.jpg"
+    },
+    {
+      "id": "02-admired",
+      "headline": "Thanked once. Admired every day.",
+      "subline": "",
+      "image": "../Images/web/shelf.jpg",
+      "photo": true
+    },
+    {
+      "id": "03-palm",
+      "headline": "5.5 inches. Fits in your palm.",
+      "subline": "",
+      "image": "../Images/web/scale.jpg"
+    },
+    {
+      "id": "04-occasions",
+      "headline": "Griha pravesh. Weddings. Diwali.",
+      "subline": "",
+      "image": "../Images/web/occasion.jpg",
+      "photo": true
+    },
+    {
+      "id": "05-finish",
+      "headline": "Not the shiny one everyone gifts.",
+      "subline": "Antique dual-tone. Every carved detail stays visible.",
+      "image": "../Images/web/finish-antique.jpg"
+    }
+  ]
+}

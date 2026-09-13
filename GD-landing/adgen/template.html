@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Ad frame</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#FFF1DC;
+    --maroon:#B8102E;
+    --gold:#E5A100;
+    --ink:#241512;
+    --kraft:#FCE8B8;
+    --kraft-edge:#D9A94D;
+    --twine:#8C5A2B;
+  }
+
+  *{box-sizing:border-box;margin:0;padding:0;}
+
+  html,body{
+    width:100%;
+    height:100%;
+    background:var(--cream);
+    overflow:hidden;
+  }
+
+  /* Canvas is always 1080px wide, so every size below is a literal px value
+     and needs no scaling maths. Only the height changes per format. */
+  .canvas{
+    position:relative;
+    width:100%;
+    height:100%;
+    background:var(--cream);
+    color:var(--ink);
+    font-family:-apple-system,"Segoe UI",Roboto,sans-serif;
+    overflow:hidden;
+  }
+
+  .content{
+    position:relative;
+    z-index:3;
+    width:100%;
+    height:100%;
+    display:flex;
+    flex-direction:column;
+  }
+
+  /* Two bands hold all the type. Their outer padding is the safe zone, so
+     nothing can be written into a band Meta's interface covers. */
+  .band-top{flex:0 0 auto;}
+  .band-bottom{flex:0 0 auto;}
+  .middle{flex:1 1 auto;min-height:0;position:relative;}
+
+  .logo{
+    width:132px;
+    height:auto;
+    margin-bottom:26px;
+    mix-blend-mode:multiply;
+  }
+  .logo.is-hidden{display:none;}
+
+  .headline{
+    font-family:"Fraunces",Georgia,serif;
+    font-optical-sizing:auto;
+    font-weight:600;
+    color:var(--maroon);
+    font-size:64px;
+    line-height:1.05;
+    letter-spacing:-0.02em;
+    text-wrap:balance;
+  }
+
+  .subline{
+    font-size:29px;
+    line-height:1.35;
+    color:var(--ink);
+    opacity:.75;
+    margin-top:18px;
+    max-width:800px;
+  }
+
+  /* PANEL MODE — the default. The product sits on the cream ground and is
+     given as much of the frame as the type leaves it.
+
+     mix-blend-mode:multiply is what makes the white-background shots work.
+     White multiplied against the cream ground becomes the cream ground, so
+     the pasted-rectangle edge disappears without any cutout work. The
+     product itself darkens very slightly, which on silver is not visible. */
+  .shot{
+    position:absolute;
+    inset:0;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+  .shot img{
+    max-width:100%;
+    max-height:100%;
+    width:auto;
+    height:auto;
+    object-fit:contain;
+  }
+  .shot.is-blend img{mix-blend-mode:multiply;}
+
+  /* PHOTO MODE — for shots that are genuinely photographic rather than a
+     product on a plain ground. The image fills the canvas and the type sits
+     on solid cream bands with a hard edge. No gradient, no fade. */
+  .canvas.is-photo .shot{
+    position:absolute;
+    inset:0;
+    z-index:1;
+  }
+  .canvas.is-photo .shot img{
+    width:100%;
+    height:100%;
+    max-width:none;
+    max-height:none;
+    object-fit:cover;
+    mix-blend-mode:normal;
+  }
+  .canvas.is-photo .band-top{
+    background:var(--cream);
+    border-bottom:2px solid var(--gold);
+  }
+  .canvas.is-photo .band-bottom{
+    background:var(--cream);
+    border-top:2px solid var(--gold);
+  }
+
+  /* In panel mode the gold rule is the only divider on the page. */
+  .canvas:not(.is-photo) .band-bottom{
+    border-top:2px solid var(--gold);
+  }
+
+  .footer{
+    display:flex;
+    align-items:flex-end;
+    justify-content:space-between;
+    gap:28px;
+  }
+
+  .price-now{
+    font-family:"Fraunces",Georgia,serif;
+    font-optical-sizing:auto;
+    font-weight:600;
+    font-size:64px;
+    line-height:1;
+    color:var(--maroon);
+  }
+  .price-was{
+    font-size:30px;
+    color:#8f8578;
+    text-decoration:line-through;
+    margin-left:14px;
+  }
+
+  /* Gift tag, carried over from the landing page so the ad and the page read
+     as the same seller. */
+  .tag{
+    position:relative;
+    flex:0 0 auto;
+    padding:34px 30px 18px;
+    background:var(--kraft);
+    border:2px solid var(--kraft-edge);
+    border-radius:12px;
+    text-align:center;
+  }
+  .tag::after{
+    content:"";
+    position:absolute;
+    top:-2px;right:-2px;
+    width:24px;height:24px;
+    background:var(--cream);
+    clip-path:polygon(100% 0, 100% 100%, 0 0);
+  }
+  .tag::before{
+    content:"";
+    position:absolute;
+    left:50%;top:13px;
+    transform:translateX(-50%);
+    width:11px;height:11px;
+    border-radius:50%;
+    background:var(--cream);
+    border:2px solid var(--kraft-edge);
+  }
+  .tag .twine{
+    position:absolute;
+    left:50%;top:-8px;
+    width:28px;height:15px;
+    transform:translateX(-50%);
+    border:2px solid var(--twine);
+    border-bottom:none;
+    border-radius:50% 50% 0 0;
+  }
+  .tag .tag-label{
+    display:block;
+    font-size:19px;
+    letter-spacing:.05em;
+    color:var(--maroon);
+    opacity:.72;
+  }
+  .tag .tag-code{
+    display:block;
+    font-family:"Fraunces",Georgia,serif;
+    font-optical-sizing:auto;
+    font-weight:600;
+    font-size:38px;
+    letter-spacing:.02em;
+    color:var(--maroon);
+    margin-top:1px;
+  }
+
+  /* Guide overlay. Only drawn in guides mode, written to its own folder. */
+  .guides{position:absolute;inset:0;z-index:9;display:none;}
+  .canvas.is-guides .guides{display:block;}
+  .guides .band{
+    position:absolute;
+    background:rgba(220,20,60,.24);
+    border:2px dashed rgba(160,0,30,.8);
+  }
+  .guides .band span{
+    position:absolute;left:14px;top:10px;
+    font-size:22px;font-weight:700;color:#7a0016;
+    background:rgba(255,255,255,.72);
+    padding:3px 10px;border-radius:4px;
+  }
+  .guides .square{
+    position:absolute;left:0;width:1080px;height:1080px;
+    border:3px solid rgba(0,90,180,.85);
+  }
+  .guides .square span{
+    position:absolute;left:14px;bottom:10px;
+    font-size:22px;font-weight:700;color:#003f7d;
+    background:rgba(255,255,255,.72);
+    padding:3px 10px;border-radius:4px;
+  }
+
+  .is-hidden{display:none !important;}
+</style>
+</head>
+<body>
+
+<div class="canvas" id="canvas">
+
+  <div class="shot" id="shotWrap">
+    <img id="shot" alt="">
+  </div>
+
+  <div class="content" id="content">
+    <div class="band-top" id="bandTop">
+      <img class="logo" id="logo" alt="">
+      <h1 class="headline" id="headline"></h1>
+      <p class="subline" id="subline"></p>
+    </div>
+
+    <div class="middle" id="middle"></div>
+
+    <div class="band-bottom" id="bandBottom">
+      <div class="footer" id="footer">
+        <div>
+          <span class="price-now" id="priceNow"></span>
+          <span class="price-was" id="priceWas"></span>
+        </div>
+        <div class="tag" id="tag">
+          <span class="twine"></span>
+          <span class="tag-label" id="tagLabel"></span>
+          <span class="tag-code" id="tagCode"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="guides" id="guides"></div>
+</div>
+
+<script>
+  window.render = function (brand, variant, size, opts) {
+    window.__imagesReady = false;
+    opts = opts || {};
+
+    var canvas   = document.getElementById('canvas');
+    var bandTop  = document.getElementById('bandTop');
+    var bandBot  = document.getElementById('bandBottom');
+    var middle   = document.getElementById('middle');
+    var shotWrap = document.getElementById('shotWrap');
+
+    var safe  = size.safe;
+    var photo = variant.photo === true;
+
+    // The safe zone is the outer padding of the two type bands.
+    bandTop.style.paddingTop    = safe.top + 'px';
+    bandTop.style.paddingLeft   = safe.side + 'px';
+    bandTop.style.paddingRight  = safe.side + 'px';
+    bandTop.style.paddingBottom = (size.gap || 34) + 'px';
+
+    bandBot.style.paddingBottom = safe.bottom + 'px';
+    bandBot.style.paddingLeft   = safe.side + 'px';
+    bandBot.style.paddingRight  = safe.side + 'px';
+    bandBot.style.paddingTop    = (size.gap || 34) + 'px';
+
+    canvas.classList.toggle('is-photo', photo);
+    canvas.classList.toggle('is-guides', opts.guides === true);
+
+    // In panel mode the product lives inside the middle strip, sized to it.
+    // In photo mode it becomes a full-canvas layer behind both bands.
+    if (photo) {
+      if (shotWrap.parentNode !== canvas) canvas.insertBefore(shotWrap, canvas.firstChild);
+    } else {
+      if (shotWrap.parentNode !== middle) middle.appendChild(shotWrap);
+    }
+
+    // Blend only makes sense against the cream ground, never in photo mode.
+    var blend = !photo && variant.blend !== false;
+    shotWrap.classList.toggle('is-blend', blend);
+
+    var logo = document.getElementById('logo');
+    var showLogo = size.logo !== false;
+    logo.classList.toggle('is-hidden', !showLogo);
+
+    var headline = document.getElementById('headline');
+    headline.textContent = variant.headline;
+    headline.style.fontSize = (variant.headlineSize || size.headlineSize || 64) + 'px';
+
+    var subline = document.getElementById('subline');
+    subline.textContent = variant.subline || '';
+    subline.classList.toggle('is-hidden', !variant.subline);
+
+    document.getElementById('priceNow').textContent = brand.priceNow;
+    document.getElementById('priceWas').textContent = brand.priceWas;
+    document.getElementById('tagLabel').textContent = brand.codeLabel;
+    document.getElementById('tagCode').textContent  = brand.code;
+    document.getElementById('tag').classList.toggle('is-hidden', variant.showCode === false);
+
+    drawGuides(size);
+
+    var shot = document.getElementById('shot');
+    var pending = showLogo ? 2 : 1;
+    function done() {
+      pending -= 1;
+      if (pending <= 0) window.__imagesReady = true;
+    }
+
+    // A cached image never fires onload again, which would hang the run from
+    // the second variant onward. So check .complete as well.
+    function attach(img, src) {
+      img.onload = done;
+      img.onerror = done;
+      img.src = src;
+      if (img.complete) { img.onload = null; img.onerror = null; done(); }
+    }
+
+    if (showLogo) attach(logo, brand.logo);
+    attach(shot, variant.image);
+  };
+
+  function drawGuides(size) {
+    var g = document.getElementById('guides');
+    g.innerHTML = '';
+    var safe = size.safe;
+
+    function band(css, label) {
+      var d = document.createElement('div');
+      d.className = 'band';
+      for (var k in css) d.style[k] = css[k];
+      if (label) {
+        var s = document.createElement('span');
+        s.textContent = label;
+        d.appendChild(s);
+      }
+      g.appendChild(d);
+    }
+
+    band({ left:'0', top:'0', width:'100%', height:safe.top + 'px' },
+         'top ' + safe.top + 'px \u2014 ' + pct(safe.top, size.h));
+    band({ left:'0', bottom:'0', width:'100%', height:safe.bottom + 'px' },
+         'bottom ' + safe.bottom + 'px \u2014 ' + pct(safe.bottom, size.h));
+    band({ left:'0', top:'0', width:safe.side + 'px', height:'100%' }, '');
+    band({ right:'0', top:'0', width:safe.side + 'px', height:'100%' }, '');
+
+    if (size.h > 1080) {
+      var sq = document.createElement('div');
+      sq.className = 'square';
+      sq.style.top = Math.round((size.h - 1080) / 2) + 'px';
+      var lbl = document.createElement('span');
+      lbl.textContent = 'centre 1080 square \u2014 survives Feed re-crop';
+      sq.appendChild(lbl);
+      g.appendChild(sq);
+    }
+  }
+
+  function pct(px, total) { return Math.round(px / total * 100) + '%'; }
+
+  // Reports what actually rendered, so generate.js can check it rather than
+  // trusting the CSS to have held.
+  window.measureText = function () {
+    var ids = ['logo', 'headline', 'subline', 'footer'];
+    var box = null;
+    ids.forEach(function (id) {
+      var el = document.getElementById(id);
+      if (!el || el.classList.contains('is-hidden')) return;
+      var r = el.getBoundingClientRect();
+      if (r.width === 0 && r.height === 0) return;
+      if (!box) box = { top:r.top, bottom:r.bottom, left:r.left, right:r.right };
+      else {
+        box.top    = Math.min(box.top, r.top);
+        box.left   = Math.min(box.left, r.left);
+        box.bottom = Math.max(box.bottom, r.bottom);
+        box.right  = Math.max(box.right, r.right);
+      }
+    });
+    return box;
+  };
+
+  // Headline line count, and how much of the frame the product occupies.
+  // Both are quality checks rather than safe-zone checks.
+  window.measureQuality = function (size) {
+    var h = document.getElementById('headline');
+    var cs = window.getComputedStyle(h);
+    var lh = parseFloat(cs.lineHeight) ||
+             (parseFloat(cs.fontSize) * 1.05);
+    var lines = Math.round(h.getBoundingClientRect().height / lh);
+
+    var img = document.getElementById('shot');
+    var r = img.getBoundingClientRect();
+    var share = (r.height * r.width) / (size.w * size.h);
+
+    return { headlineLines: lines, productShare: share, productHeight: r.height };
+  };
+</script>
+
+</body>
+</html>

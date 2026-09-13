@@ -414,6 +414,57 @@
     font-size:.95rem;
   }
 
+  /* ---------- Reviews ---------- */
+  .reviews-note{
+    font-size:.78rem;
+    color:var(--maroon);
+    opacity:.7;
+    text-align:center;
+    margin:0 0 6px;
+  }
+  .reviews-slideshow{margin-top:16px;}
+  .reviews-track{
+    display:flex;
+    overflow-x:auto;
+    scroll-snap-type:x mandatory;
+    -webkit-overflow-scrolling:touch;
+    scrollbar-width:none;
+  }
+  .reviews-track::-webkit-scrollbar{display:none;}
+  .review-slide{
+    flex:0 0 100%;
+    scroll-snap-align:center;
+    scroll-snap-stop:always;
+    padding:0 2px;
+  }
+  .review-card{
+    background:#fff;
+    border:1px solid var(--gold);
+    border-radius:8px;
+    padding:22px 20px;
+    box-shadow:0 2px 8px rgba(0,0,0,.06);
+    min-height:220px;
+  }
+  .review-title{
+    font-family:"Fraunces",Georgia,serif;
+    font-optical-sizing:auto;
+    font-weight:600;
+    color:var(--maroon);
+    font-size:1.05rem;
+    margin:0 0 .5em;
+  }
+  .review-body{
+    font-size:.95rem;
+    margin:0 0 .7em;
+  }
+  .review-author{
+    font-size:.85rem;
+    font-weight:600;
+    color:var(--maroon);
+    margin:0;
+    text-align:left;
+  }
+
   /* ---------- Closing ---------- */
   .closing{text-align:center;}
 
@@ -595,6 +646,54 @@
     </div>
   </section>
 
+  <section class="reviews">
+    <p class="reviews-note">From verified Amazon reviews</p>
+    <h2>What customers are saying</h2>
+
+    <div class="reviews-slideshow" id="reviewsSlideshow">
+      <div class="reviews-track">
+        <div class="review-slide">
+          <div class="review-card">
+            <p class="review-title">Stunning vastu showpiece for home</p>
+            <p class="review-body">I Was hunting for a decent vastu showpiece for home that doesn't look plastic-y. This ganesh shankh original is solid, weighty, the silver detailing is clean. Velvet box packaging makes it gift-ready instantly. Worth every rupee.</p>
+            <p class="review-author">— Sneha</p>
+          </div>
+        </div>
+
+        <div class="review-slide">
+          <div class="review-card">
+            <p class="review-title">Best product for gifting</p>
+            <p class="review-body">Best product to gift friends and house warming party in budget the product quality is good</p>
+            <p class="review-author">— Alfaran</p>
+          </div>
+        </div>
+
+        <div class="review-slide">
+          <div class="review-card">
+            <p class="review-title">Gifted for home inauguration</p>
+            <p class="review-body">Bought this for home inauguration gift items & it was the most appreciated gift at the function. The velvet box, the certificate and everything together felt very premium. The ganesh shankh itself is sturdy and looks expensive. Already ordered two more for Diwali.</p>
+            <p class="review-author">— Asha</p>
+          </div>
+        </div>
+
+        <div class="review-slide">
+          <div class="review-card">
+            <p class="review-title">Perfect silver shankh for pooja. Looks premium</p>
+            <p class="review-body">We keep a shankh in our puja room and this one is genuinely different. The Ganesha work on it is detailed and the silver doesn't look cheap. Been two months and no tarnishing. I've bought similar items from local stores that dulled in weeks. This one still looks the same as day one. Very happy.</p>
+            <p class="review-author">— Sindhu</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="gallery-dots">
+        <span class="dot is-active"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+      </div>
+    </div>
+  </section>
+
   <section>
     <h2>How the code works</h2>
     <ol class="steps">
@@ -706,6 +805,30 @@
       });
     }, { root: track, threshold: 0.6 });
     track.querySelectorAll('.gallery-slide').forEach(function (slide) { observer.observe(slide); });
+  }
+
+  // Reviews slideshow — auto-advance every 3s, dots sync to position
+  const reviewsEl = document.getElementById('reviewsSlideshow');
+  if (reviewsEl) {
+    const track = reviewsEl.querySelector('.reviews-track');
+    const slides = Array.from(track.children);
+    const dots = reviewsEl.querySelectorAll('.dot');
+    let current = 0;
+
+    const observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          current = slides.indexOf(entry.target);
+          dots.forEach(function (dot, i) { dot.classList.toggle('is-active', i === current); });
+        }
+      });
+    }, { root: track, threshold: 0.6 });
+    slides.forEach(function (slide) { observer.observe(slide); });
+
+    setInterval(function () {
+      const next = (current + 1) % slides.length;
+      slides[next].scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+    }, 3000);
   }
 
   // Tap to copy the discount code

@@ -59,3 +59,21 @@ Buy on Amazon
 
 (Matches the closing card of the client's product video. Use the same words on
 every button - hero, steps, closing, sticky bar.)
+
+## Reviews
+
+1. Name: Sneha
+Title: Stunning vastu showpiece for home
+Body: I Was hunting for a decent vastu showpiece for home that doesn't look plastic-y. This ganesh shankh original is solid, weighty, the silver detailing is clean. Velvet box packaging makes it gift-ready instantly. Worth every rupee.
+
+2. Name: Alfaran
+Title: Best product for gifting
+Body: Best product to gift friends and house warming party in budget the product quality is good
+
+3. Name: Asha
+Title: Gifted for home inauguration
+Body: Bought this for home inauguration gift items & it was the most appreciated gift at the function. The velvet box, the certificate and everything together felt very premium. The ganesh shankh itself is sturdy and looks expensive. Already ordered two more for Diwali.
+
+4. Name: Sindhu
+Title: Perfect silver shankh for pooja. Looks premium
+Body: We keep a shankh in our puja room and this one is genuinely different. The Ganesha work on it is detailed and the silver doesn't look cheap. Been two months and no tarnishing. I've bought similar items from local stores that dulled in weeks. This one still looks the same as day one. Very happy.

@@ -27,14 +27,14 @@
 
 <style>
   :root{
-    --cream:#FFF1DC;
-    --maroon:#B8102E;
-    --crimson:#FF7A00;
-    --gold:#E5A100;
-    --ink:#241512;
-    --kraft:#FCE8B8;
-    --kraft-edge:#D9A94D;
-    --twine:#8C5A2B;
+    --cream:#FBEAD4;
+    --maroon:#7B1420;
+    --crimson:#E31E52;
+    --gold:#C79A3E;
+    --ink:#1A1A1A;
+    --kraft:#F1E3C4;
+    --kraft-edge:#C9AE7D;
+    --twine:#9C7B4F;
     --max:480px;
   }
 
@@ -76,14 +76,6 @@
     width:110px;
     height:auto;
     mix-blend-mode:multiply;
-  }
-  .logo-box{
-    display:inline-block;
-    line-height:0;
-    padding:8px 14px;
-    border:1px solid rgba(184,16,46,0.18);
-    background:rgba(255,255,255,0.45);
-    border-radius:10px;
   }
 
   /* ---------- Hero ---------- */
@@ -279,6 +271,37 @@
     margin:20px 0 0;
     text-align:left;
   }
+  .gallery{margin:10px 0 0;}
+  .gallery-track{
+    display:flex;
+    overflow-x:auto;
+    scroll-snap-type:x mandatory;
+    -webkit-overflow-scrolling:touch;
+    scrollbar-width:none;
+    border-radius:2px;
+  }
+  .gallery-track::-webkit-scrollbar{display:none;}
+  .gallery-slide{
+    flex:0 0 100%;
+    scroll-snap-align:center;
+    scroll-snap-stop:always;
+  }
+  .gallery-dots{
+    display:flex;
+    justify-content:center;
+    gap:7px;
+    margin-top:12px;
+  }
+  .gallery-dots .dot{
+    width:6px;
+    height:6px;
+    border-radius:50%;
+    background:var(--maroon);
+    opacity:.3;
+    transition:opacity .2s ease;
+  }
+  .gallery-dots .dot.is-active{opacity:1;}
+
   /* ---------- Product video ---------- */
   .video-block{
     position:relative;
@@ -301,8 +324,8 @@
     width:64px;
     height:64px;
     border-radius:50%;
-    background:rgba(184,16,46,.85);
-    border:1.5px solid rgba(255,241,220,.7);
+    background:rgba(123,20,32,.85);
+    border:1.5px solid rgba(251,234,212,.7);
     display:flex;
     align-items:center;
     justify-content:center;
@@ -393,7 +416,6 @@
 
   /* ---------- Closing ---------- */
   .closing{text-align:center;}
-  .closing h2{font-size:22px;}
 
   /* ---------- Footer ---------- */
   footer.site{
@@ -405,10 +427,8 @@
   footer.site img{
     width:90px;
     height:auto;
-    mix-blend-mode:multiply;
-  }
-  footer.site .logo-box{
     margin:0 auto 10px;
+    mix-blend-mode:multiply;
   }
   footer.site p{
     font-size:.78rem;
@@ -467,9 +487,7 @@
 <body>
 
 <header class="site">
-  <a href="index.html" class="logo-box" aria-label="GoDivinely home">
-    <img src="Images/web/logo.png" alt="GoDivinely" width="220" height="130">
-  </a>
+  <img src="Images/web/logo.png" alt="GoDivinely" width="220" height="130">
 </header>
 
 <div class="hero-media">
@@ -508,11 +526,30 @@
 <div class="wrap">
   <section>
     <h2>Why it's worth gifting</h2>
-    <p class="body-text">Status is not something you say. It's something people see.</p>
-    <p class="body-text">A Ganesh Shankh in polished silver plating signals taste, tradition and prosperity in one object.</p>
-    <p class="body-text">It's auspicious enough for the most traditional home, refined enough for the most modern one.</p>
-    <p class="body-text">They'll place it where visitors look first, and yours will be the gift they mention.</p>
+    <p class="body-text">Status is not something you say. It is something people see.</p>
+    <p class="body-text">A Ganesh Shankh in polished silver plating does exactly that - it signals taste, tradition and prosperity in one object. Auspicious enough for the most traditional home, refined enough for the most modern one. Detailed enough to hold attention, it tells the receiver you chose carefully instead of shopping quickly. They'll place it where visitors look first, and yours will be the gift they mention.</p>
 
+    <p class="gallery-heading">The exact piece you'll receive — swipe through</p>
+    <div class="gallery" id="productGallery">
+      <div class="gallery-track">
+        <div class="gallery-slide"><img src="Images/Exact%20Product%201.jpeg" alt="Silver-plated Ganesh Shankh, product photo 1" loading="lazy" width="700" height="700"></div>
+        <div class="gallery-slide"><img src="Images/Exact%20Product%202.jpeg" alt="Silver-plated Ganesh Shankh, product photo 2" loading="lazy" width="700" height="700"></div>
+        <div class="gallery-slide"><img src="Images/Exact%20Product%203.jpeg" alt="Silver-plated Ganesh Shankh, product photo 3" loading="lazy" width="700" height="700"></div>
+      </div>
+      <div class="gallery-dots">
+        <span class="dot is-active"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+      </div>
+    </div>
+
+    <p class="gallery-heading">See it in hand — 15 seconds</p>
+    <div class="video-block" id="productVideo">
+      <video src="Video/shankh-15s.mp4" poster="Images/Exact%20Product%202.jpeg" muted playsinline loop preload="metadata" width="700" height="700"></video>
+      <button class="video-play" type="button" aria-label="Play video">
+        <span class="video-play-icon"></span>
+      </button>
+    </div>
   </section>
 
   <section>
@@ -532,21 +569,11 @@
       <img src="Images/web/scale.jpg" alt="Ganesh Shankh held in a palm, showing its compact size" loading="lazy" width="600" height="848">
       <p class="detail-caption">5.5 inch / 13.5 cm — fits in your palm</p>
     </div>
-
-    <p class="gallery-heading">See it in hand — 15 seconds</p>
-    <div class="video-block" id="productVideo">
-      <video src="Video/shankh-15s.mp4" poster="Images/Exact%20Product%202.jpeg" muted playsinline loop preload="metadata" width="700" height="700"></video>
-      <button class="video-play" type="button" aria-label="Play video">
-        <span class="video-play-icon"></span>
-      </button>
-    </div>
   </section>
 
   <section>
     <h2>Gifting occasions</h2>
-    <p class="body-text">Best gift for Griha pravesh, weddings, anniversaries, Diwali hampers, and milestone birthdays.</p>
-    <p class="body-text">It suits elders who value tradition and younger couples who want their home to look considered.</p>
-    <p class="body-text">You can also keep this in your own pooja room.</p>
+    <p class="body-text">Griha pravesh and housewarmings, weddings and anniversaries, Diwali hampers, milestone birthdays, or the client you cannot afford to gift casually. It suits elders who value tradition and younger couples who want their home to look considered - and it is just as easy to keep for your own pooja room.</p>
     <div class="occasion-media">
       <img src="Images/web/occasion.jpg" alt="Ganesh Shankh beside a wrapped gift box" loading="lazy" width="700" height="486">
     </div>
@@ -596,9 +623,7 @@
 </div>
 
 <footer class="site">
-  <a href="index.html" class="logo-box" aria-label="GoDivinely home">
-    <img src="Images/web/logo.png" alt="GoDivinely" width="220" height="130" loading="lazy">
-  </a>
+  <img src="Images/web/logo.png" alt="GoDivinely" width="220" height="130" loading="lazy">
   <p>Available on Amazon.in. Payment and delivery handled entirely by Amazon.</p>
 </footer>
 
@@ -665,6 +690,22 @@
     videoBlock.addEventListener('click', togglePlay);
     video.addEventListener('play', function () { videoBlock.classList.add('is-playing'); });
     video.addEventListener('pause', function () { videoBlock.classList.remove('is-playing'); });
+  }
+
+  // Product gallery — sync dots to swipe position
+  const gallery = document.getElementById('productGallery');
+  if (gallery) {
+    const track = gallery.querySelector('.gallery-track');
+    const dots = gallery.querySelectorAll('.dot');
+    const observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          const index = Array.from(track.children).indexOf(entry.target);
+          dots.forEach(function (dot, i) { dot.classList.toggle('is-active', i === index); });
+        }
+      });
+    }, { root: track, threshold: 0.6 });
+    track.querySelectorAll('.gallery-slide').forEach(function (slide) { observer.observe(slide); });
   }
 
   // Tap to copy the discount code

@@ -550,8 +550,8 @@
   <p class="hero-sub">A silver-plated Ganesh Shankh - auspicious, elegant, and quietly expensive-looking. The kind of gift that earns a permanent place in the room.</p>
 
   <div class="price-row">
-    <span class="price-now">₹1,599</span>
-    <span class="price-was">₹1,899</span>
+    <span class="price-now">₹1,399</span>
+    <span class="price-was">₹1,699</span>
     <span class="price-note">with code</span>
   </div>
 
@@ -727,7 +727,7 @@
 </footer>
 
 <div class="sticky-bar" id="stickyBar">
-  <span class="sticky-price">₹1,599 <span class="sticky-was">₹1,899</span></span>
+  <span class="sticky-price">₹1,399 <span class="sticky-was">₹1,699</span></span>
   <a href="#" class="cta-btn" data-cta="sticky">Buy on Amazon</a>
 </div>
 
@@ -827,7 +827,7 @@
 
     setInterval(function () {
       const next = (current + 1) % slides.length;
-      slides[next].scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+      track.scrollTo({ left: slides[next].offsetLeft, behavior: 'smooth' });
     }, 3000);
   }
 
@@ -854,7 +854,7 @@
       fbq('track', 'InitiateCheckout', {
         content_name: 'Silver Ganesh Shankh',
         button_position: position,
-        value: 1599,
+        value: 1399,
         currency: 'INR'
       });
 

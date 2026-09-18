@@ -26,15 +26,13 @@ A Ganesh Shankh in polished silver plating signals taste, tradition and prosperi
 
 It's auspicious enough for the most traditional home, refined enough for the most modern one. 
 
-They'll place it where visitors look first, and yours will be the gift they mention.
+People will place it where visitors look first, and yours will be the gift they mention.
 
 ## Gifting occasions
 
-Best gift for Griha pravesh, weddings, anniversaries, Diwali hampers, and milestone birthdays. 
+Best gift for Griha pravesh, weddings, anniversaries, Diwali hampers, and birthdays.
 
-It suits elders who value tradition and younger couples who want their home to look considered.
-
-You can also keep this in your own pooja room.
+It suits elders who value tradition and younger couples who want their home to look considered. You can also keep this in your own pooja room.
 
 ## Finish comparison
 

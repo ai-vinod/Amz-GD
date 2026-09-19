@@ -13,12 +13,17 @@
   const PIXEL_ID = '895562492816195';
   const AMAZON_URL = 'https://amz.now/Ganeshankh';
 
-  // --- Meta base pixel ---
+  // --- Meta base pixel (queue is set up immediately; the actual
+  // fbevents.js fetch/parse is deferred to idle time so it doesn't
+  // compete with the hero image / font for the main thread) ---
   !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
   n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
-  n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
-  t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
-  document,'script','https://connect.facebook.net/en_US/fbevents.js');
+  n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];
+  function loadPixelScript(){t=b.createElement(e);t.async=!0;t.src=v;
+    s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s);}
+  if('requestIdleCallback' in f){f.requestIdleCallback(loadPixelScript,{timeout:2000});}
+  else{f.addEventListener('load',loadPixelScript);}
+  }(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
   fbq('init', PIXEL_ID);
   fbq('track', 'PageView');
 </script>
@@ -937,92 +942,104 @@
     });
   }, 3000);
 
-  // Scroll depth + sticky bar reveal
-  const hero = document.querySelector('.hero-media');
-  const stickyBar = document.getElementById('stickyBar');
+  // Non-critical interaction wiring (scroll tracking, sticky bar, video
+  // tap-to-play, both auto-advancing slideshows) is deferred to idle time
+  // so it doesn't compete with the hero image / font for the main thread
+  // during first paint. None of it is needed for the initial render.
+  function initDeferred() {
+    // Scroll depth + sticky bar reveal
+    const hero = document.querySelector('.hero-media');
+    const stickyBar = document.getElementById('stickyBar');
 
-  window.addEventListener('scroll', function () {
-    const doc = document.documentElement;
-    const depth = (window.scrollY + window.innerHeight) / doc.scrollHeight * 100;
+    window.addEventListener('scroll', function () {
+      const doc = document.documentElement;
+      const depth = (window.scrollY + window.innerHeight) / doc.scrollHeight * 100;
 
-    if (depth >= 50) once('s50', function () { fbq('trackCustom', 'Scroll50'); });
-    if (depth >= 90) once('s90', function () { fbq('trackCustom', 'Scroll90'); });
+      if (depth >= 50) once('s50', function () { fbq('trackCustom', 'Scroll50'); });
+      if (depth >= 90) once('s90', function () { fbq('trackCustom', 'Scroll90'); });
 
-    if (stickyBar && hero) {
-      const heroBottom = hero.getBoundingClientRect().bottom;
-      if (heroBottom < 0) {
-        stickyBar.classList.add('is-visible');
-      } else {
-        stickyBar.classList.remove('is-visible');
+      if (stickyBar && hero) {
+        const heroBottom = hero.getBoundingClientRect().bottom;
+        if (heroBottom < 0) {
+          stickyBar.classList.add('is-visible');
+        } else {
+          stickyBar.classList.remove('is-visible');
+        }
       }
+    }, { passive: true });
+
+    // Product video — tap-to-play overlay
+    const videoBlock = document.getElementById('productVideo');
+    if (videoBlock) {
+      const video = videoBlock.querySelector('video');
+      const playBtn = videoBlock.querySelector('.video-play');
+
+      function togglePlay() {
+        if (video.paused) { video.play(); } else { video.pause(); }
+      }
+
+      playBtn.addEventListener('click', function (e) {
+        e.stopPropagation();
+        togglePlay();
+      });
+      videoBlock.addEventListener('click', togglePlay);
+      video.addEventListener('play', function () { videoBlock.classList.add('is-playing'); });
+      video.addEventListener('pause', function () { videoBlock.classList.remove('is-playing'); });
     }
-  }, { passive: true });
 
-  // Product video — tap-to-play overlay
-  const videoBlock = document.getElementById('productVideo');
-  if (videoBlock) {
-    const video = videoBlock.querySelector('video');
-    const playBtn = videoBlock.querySelector('.video-play');
+    // Detail slideshow — auto-advance every 3s, dots sync to swipe position
+    const detailEl = document.getElementById('detailSlideshow');
+    if (detailEl) {
+      const track = detailEl.querySelector('.detail-track');
+      const slides = Array.from(track.children);
+      const dots = detailEl.querySelectorAll('.dot');
+      let current = 0;
 
-    function togglePlay() {
-      if (video.paused) { video.play(); } else { video.pause(); }
+      const observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            current = slides.indexOf(entry.target);
+            dots.forEach(function (dot, i) { dot.classList.toggle('is-active', i === current); });
+          }
+        });
+      }, { root: track, threshold: 0.6 });
+      slides.forEach(function (slide) { observer.observe(slide); });
+
+      setInterval(function () {
+        const next = (current + 1) % slides.length;
+        track.scrollTo({ left: next * track.clientWidth, behavior: 'smooth' });
+      }, 3000);
     }
 
-    playBtn.addEventListener('click', function (e) {
-      e.stopPropagation();
-      togglePlay();
-    });
-    videoBlock.addEventListener('click', togglePlay);
-    video.addEventListener('play', function () { videoBlock.classList.add('is-playing'); });
-    video.addEventListener('pause', function () { videoBlock.classList.remove('is-playing'); });
+    // Reviews slideshow — auto-advance every 3s, dots sync to position
+    const reviewsEl = document.getElementById('reviewsSlideshow');
+    if (reviewsEl) {
+      const track = reviewsEl.querySelector('.reviews-track');
+      const slides = Array.from(track.children);
+      const dots = reviewsEl.querySelectorAll('.dot');
+      let current = 0;
+
+      const observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            current = slides.indexOf(entry.target);
+            dots.forEach(function (dot, i) { dot.classList.toggle('is-active', i === current); });
+          }
+        });
+      }, { root: track, threshold: 0.6 });
+      slides.forEach(function (slide) { observer.observe(slide); });
+
+      setInterval(function () {
+        const next = (current + 1) % slides.length;
+        track.scrollTo({ left: next * track.clientWidth, behavior: 'smooth' });
+      }, 3000);
+    }
   }
 
-  // Detail slideshow — auto-advance every 3s, dots sync to swipe position
-  const detailEl = document.getElementById('detailSlideshow');
-  if (detailEl) {
-    const track = detailEl.querySelector('.detail-track');
-    const slides = Array.from(track.children);
-    const dots = detailEl.querySelectorAll('.dot');
-    let current = 0;
-
-    const observer = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
-        if (entry.isIntersecting) {
-          current = slides.indexOf(entry.target);
-          dots.forEach(function (dot, i) { dot.classList.toggle('is-active', i === current); });
-        }
-      });
-    }, { root: track, threshold: 0.6 });
-    slides.forEach(function (slide) { observer.observe(slide); });
-
-    setInterval(function () {
-      const next = (current + 1) % slides.length;
-      track.scrollTo({ left: next * track.clientWidth, behavior: 'smooth' });
-    }, 3000);
-  }
-
-  // Reviews slideshow — auto-advance every 3s, dots sync to position
-  const reviewsEl = document.getElementById('reviewsSlideshow');
-  if (reviewsEl) {
-    const track = reviewsEl.querySelector('.reviews-track');
-    const slides = Array.from(track.children);
-    const dots = reviewsEl.querySelectorAll('.dot');
-    let current = 0;
-
-    const observer = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
-        if (entry.isIntersecting) {
-          current = slides.indexOf(entry.target);
-          dots.forEach(function (dot, i) { dot.classList.toggle('is-active', i === current); });
-        }
-      });
-    }, { root: track, threshold: 0.6 });
-    slides.forEach(function (slide) { observer.observe(slide); });
-
-    setInterval(function () {
-      const next = (current + 1) % slides.length;
-      track.scrollTo({ left: next * track.clientWidth, behavior: 'smooth' });
-    }, 3000);
+  if ('requestIdleCallback' in window) {
+    requestIdleCallback(initDeferred, { timeout: 1500 });
+  } else {
+    window.addEventListener('load', initDeferred);
   }
 
   // Tap to copy the discount code

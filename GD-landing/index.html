@@ -6,9 +6,8 @@
 <title>GoDivinely — Silver-Plated Ganesh Shankh</title>
 <meta name="description" content="A silver-plated Ganesh Shankh - auspicious, elegant, and quietly expensive-looking. Available on Amazon.in.">
 <meta name="robots" content="noindex, nofollow">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500;1,9..144,600&display=swap" rel="stylesheet">
+<link rel="preload" href="fonts/fraunces-600-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="Images/web/hero.webp" as="image" fetchpriority="high">
 
 <script>
   const PIXEL_ID = '895562492816195';
@@ -27,6 +26,14 @@
   src="https://www.facebook.com/tr?id=895562492816195&ev=PageView&noscript=1"/></noscript>
 
 <style>
+  @font-face{
+    font-family:"Fraunces";
+    font-style:normal;
+    font-weight:600;
+    font-display:swap;
+    src:url("fonts/fraunces-600-latin.woff2") format("woff2");
+    unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
+  }
   :root{
     --cream:#FBEAD4;
     --maroon:#7B1420;
@@ -648,7 +655,7 @@
 <body>
 
 <header class="site">
-  <img src="Images/web/logo.png" alt="GoDivinely" width="220" height="130">
+  <img src="Images/web/logo.webp" alt="GoDivinely" width="220" height="130">
 </header>
 
 <div class="wrap">
@@ -662,7 +669,7 @@
 </div>
 
 <div class="hero-media">
-  <img src="Images/web/hero.jpg" alt="Silver-plated Ganesh Shankh seated in an open red velvet gift box" width="800" height="800" fetchpriority="high">
+  <img src="Images/web/hero.webp" alt="Silver-plated Ganesh Shankh seated in an open red velvet gift box" width="800" height="800" fetchpriority="high">
 </div>
 
 <div class="wrap hero-copy">
@@ -711,7 +718,7 @@
 
     <p class="gallery-heading">See it in hand — 15 seconds</p>
     <div class="video-block" id="productVideo">
-      <video src="Video/shankh-15s.mp4" poster="Images/web/video-poster.jpg" muted playsinline loop preload="metadata" width="700" height="700"></video>
+      <video src="Video/shankh-15s.mp4" poster="Images/web/video-poster.webp" muted playsinline loop preload="metadata" width="700" height="700"></video>
       <button class="video-play" type="button" aria-label="Play video">
         <span class="video-play-icon"></span>
       </button>
@@ -724,27 +731,27 @@
     <div class="detail-slideshow" id="detailSlideshow">
       <div class="detail-track">
         <div class="detail-slide">
-          <img src="Images/web/hero--1x1.jpg" alt="GoDivinely — where sacred craft meets spiritual intention" loading="lazy" width="1000" height="1000">
+          <img src="Images/web/hero--1x1.webp" alt="GoDivinely — where sacred craft meets spiritual intention" loading="lazy" width="1000" height="1000">
           <p class="detail-caption">Where sacred craft meets spiritual intention</p>
         </div>
 
         <div class="detail-slide">
-          <img src="Images/web/7.jpg" alt="Hallmark lab tested certificate for 100% pure silver plating" loading="lazy" width="1000" height="1000">
+          <img src="Images/web/7.webp" alt="Hallmark lab tested certificate for 100% pure silver plating" loading="lazy" width="1000" height="1000">
           <p class="detail-caption">Hallmark lab tested — 100% pure silver plating</p>
         </div>
 
         <div class="detail-slide">
-          <img src="Images/web/scale.jpg" alt="Ganesh Shankh held in a palm, showing its compact size" loading="lazy" width="600" height="848">
+          <img src="Images/web/scale.webp" alt="Ganesh Shankh held in a palm, showing its compact size" loading="lazy" width="600" height="848">
           <p class="detail-caption">5.5 inch / 13.5 cm — fits in your palm</p>
         </div>
 
         <div class="detail-slide">
-          <img src="Images/web/4.jpg" alt="Everything included inside the gift box" loading="lazy" width="1000" height="1000">
+          <img src="Images/web/4.webp" alt="Everything included inside the gift box" loading="lazy" width="1000" height="1000">
           <p class="detail-caption">Everything that arrives in your box</p>
         </div>
 
         <div class="detail-slide">
-          <img src="Images/web/9-no-footer.jpg" alt="Vastu placement guide for the Ganesh Shankh" loading="lazy" width="1000" height="1000">
+          <img src="Images/web/9-no-footer.webp" alt="Vastu placement guide for the Ganesh Shankh" loading="lazy" width="1000" height="1000">
           <p class="detail-caption">Vastu-approved placement guidance included</p>
         </div>
       </div>
@@ -763,7 +770,7 @@
     <p class="body-text">Best gift for Griha pravesh, weddings, anniversaries, Diwali hampers, and birthdays.</p>
     <p class="body-text">It suits elders who value tradition and younger couples who want their home to look considered. You can also keep this in your own pooja room.</p>
     <div class="occasion-media">
-      <img src="Images/web/occasion.jpg" alt="Ganesh Shankh beside a wrapped gift box" loading="lazy" width="700" height="486">
+      <img src="Images/web/occasion.webp" alt="Ganesh Shankh beside a wrapped gift box" loading="lazy" width="700" height="486">
     </div>
   </section>
 
@@ -773,11 +780,11 @@
 
     <div class="finish-grid">
       <div class="finish-card is-other">
-        <img src="Images/web/finish-shiny.jpg" alt="Plain shiny silver finish, carving detail lost in glare" loading="lazy" width="500" height="605">
+        <img src="Images/web/finish-shiny.webp" alt="Plain shiny silver finish, carving detail lost in glare" loading="lazy" width="500" height="605">
         <p class="finish-label">Shiny finish — detail lost in glare</p>
       </div>
       <div class="finish-card is-godivinely">
-        <img src="Images/web/finish-antique.jpg" alt="GoDivinely antique dual-tone finish with every carved detail visible" loading="lazy" width="500" height="605">
+        <img src="Images/web/finish-antique.webp" alt="GoDivinely antique dual-tone finish with every carved detail visible" loading="lazy" width="500" height="605">
         <p class="finish-label">GoDivinely antique dual-tone — every detail visible</p>
       </div>
     </div>
@@ -857,7 +864,7 @@
 </div>
 
 <footer class="site">
-  <img src="Images/web/logo.png" alt="GoDivinely" width="220" height="130" loading="lazy">
+  <img src="Images/web/logo.webp" alt="GoDivinely" width="220" height="130" loading="lazy">
   <p>Available on Amazon.in. Payment and delivery handled entirely by Amazon.</p>
 </footer>
 

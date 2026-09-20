@@ -254,7 +254,7 @@ Paste this before `</body>`.
 Markup the buttons and code element like this:
 
 ```html
-<span data-code="GANESH300">GANESH300</span>
+<span data-code="M2ML2589">M2ML2589</span>
 <a href="#" data-cta="hero">Buy on Amazon</a>
 <a href="#" data-cta="sticky">Buy on Amazon</a>
 ```

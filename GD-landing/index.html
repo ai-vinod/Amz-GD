@@ -30,6 +30,15 @@
 <noscript><img height="1" width="1" style="display:none"
   src="https://www.facebook.com/tr?id=895562492816195&ev=PageView&noscript=1"/></noscript>
 
+<!-- --- Google Analytics 4 --- -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-KVQKMC0884"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-KVQKMC0884');
+</script>
+
 <style>
   @font-face{
     font-family:"Fraunces";
@@ -939,6 +948,7 @@
         content_name: 'Silver Ganesh Shankh',
         content_type: 'product'
       });
+      if (typeof gtag === 'function') gtag('event', 'view_content');
     });
   }, 3000);
 
@@ -955,8 +965,14 @@
       const doc = document.documentElement;
       const depth = (window.scrollY + window.innerHeight) / doc.scrollHeight * 100;
 
-      if (depth >= 50) once('s50', function () { fbq('trackCustom', 'Scroll50'); });
-      if (depth >= 90) once('s90', function () { fbq('trackCustom', 'Scroll90'); });
+      if (depth >= 50) once('s50', function () {
+        fbq('trackCustom', 'Scroll50');
+        if (typeof gtag === 'function') gtag('event', 'scroll_50');
+      });
+      if (depth >= 90) once('s90', function () {
+        fbq('trackCustom', 'Scroll90');
+        if (typeof gtag === 'function') gtag('event', 'scroll_90');
+      });
 
       if (stickyBar && hero) {
         const heroBottom = hero.getBoundingClientRect().bottom;
@@ -1052,6 +1068,7 @@
       });
       once('copy', function () {
         fbq('trackCustom', 'CopyCode', { code: code });
+        if (typeof gtag === 'function') gtag('event', 'copy_code', { code: code });
       });
     });
   });
@@ -1071,6 +1088,11 @@
 
       fbq('track', 'InitiateCheckout', {
         content_name: 'Silver Ganesh Shankh',
+        button_position: position,
+        value: 1399,
+        currency: 'INR'
+      });
+      if (typeof gtag === 'function') gtag('event', 'initiate_checkout', {
         button_position: position,
         value: 1399,
         currency: 'INR'

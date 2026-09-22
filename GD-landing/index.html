@@ -558,6 +558,27 @@ font for the main thread, same as the Meta Pixel above) --- -->
     font-size:.95rem;
   }
 
+  .code-proof{
+    margin:24px auto 0;
+    max-width:260px;
+    padding:10px;
+    background:#fff;
+    border:1.5px solid var(--gold);
+    border-radius:12px;
+    box-shadow:0 2px 8px rgba(123,20,32,.08);
+  }
+  .code-proof img{
+    display:block;
+    border-radius:6px;
+  }
+  .code-proof-caption{
+    margin:8px 0 0;
+    text-align:center;
+    font-size:.78rem;
+    color:var(--maroon);
+    opacity:.75;
+  }
+
   /* ---------- Reviews ---------- */
   .reviews-note{
     font-size:.78rem;
@@ -873,6 +894,10 @@ font for the main thread, same as the Meta Pixel above) --- -->
       <li>Click the button to open the Amazon listing</li>
       <li>Apply the code at checkout before paying</li>
     </ol>
+    <div class="code-proof">
+      <img src="Images/web/code-proof.webp" alt="Amazon checkout screen showing the promo code field under 'Add Gift Card or Promo Code'" loading="lazy" width="560" height="941">
+      <p class="code-proof-caption">Paste the code here at Amazon checkout</p>
+    </div>
     <a href="#" class="cta-btn" data-cta="steps" style="margin-top:24px;">Buy on Amazon</a>
   </section>
 

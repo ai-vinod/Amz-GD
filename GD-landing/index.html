@@ -348,6 +348,8 @@ font for the main thread, same as the Meta Pixel above) --- -->
     font-size:1.9rem;
     letter-spacing:.14em;
     color:var(--maroon);
+    user-select:text;
+    -webkit-user-select:text;
   }
   .code-chip .code-hint{
     display:block;
@@ -1116,18 +1118,81 @@ font for the main thread, same as the Meta Pixel above) --- -->
     window.addEventListener('load', initDeferred);
   }
 
-  // Tap to copy the discount code
+  // Tap to copy the discount code — with fallbacks for in-app webviews
+  function legacyCopy(text) {
+    try {
+      var ta = document.createElement('textarea');
+      ta.value = text;
+      ta.setAttribute('readonly', '');
+      ta.style.position = 'fixed';
+      ta.style.top = '0';
+      ta.style.left = '0';
+      ta.style.opacity = '0';
+      document.body.appendChild(ta);
+      ta.focus();
+      ta.select();
+      ta.setSelectionRange(0, text.length);
+      var ok = document.execCommand('copy');
+      document.body.removeChild(ta);
+      return ok;
+    } catch (err) {
+      return false;
+    }
+  }
+
+  function selectCodeText(codeEl) {
+    try {
+      var valueEl = codeEl.querySelector('.code-value');
+      if (valueEl && window.getSelection && document.createRange) {
+        var range = document.createRange();
+        range.selectNodeContents(valueEl);
+        var sel = window.getSelection();
+        sel.removeAllRanges();
+        sel.addRange(range);
+      }
+    } catch (err) {}
+  }
+
   document.querySelectorAll('[data-code]').forEach(function (codeEl) {
     codeEl.addEventListener('click', function () {
       const code = codeEl.dataset.code;
-      navigator.clipboard.writeText(code).then(function () {
+
+      function report(method) {
+        once('copy', function () {
+          fbq('trackCustom', 'CopyCode', { code: code, method: method });
+          if (typeof gtag === 'function') {
+            gtag('event', 'copy_code', { code: code, method: method });
+          }
+        });
+      }
+
+      function showCopied() {
         codeEl.classList.add('is-copied');
         setTimeout(function () { codeEl.classList.remove('is-copied'); }, 2000);
-      });
-      once('copy', function () {
-        fbq('trackCustom', 'CopyCode', { code: code });
-        if (typeof gtag === 'function') gtag('event', 'copy_code', { code: code });
-      });
+      }
+
+      function fallback() {
+        if (legacyCopy(code)) {
+          showCopied();
+          report('execCommand');
+        } else {
+          selectCodeText(codeEl);
+          report('failed');
+        }
+      }
+
+      if (navigator.clipboard && window.isSecureContext) {
+        try {
+          navigator.clipboard.writeText(code).then(function () {
+            showCopied();
+            report('clipboard');
+          }).catch(fallback);
+        } catch (err) {
+          fallback();
+        }
+      } else {
+        fallback();
+      }
     });
   });
 

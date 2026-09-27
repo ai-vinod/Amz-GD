@@ -11,7 +11,13 @@
 
 <script>
   const PIXEL_ID = '895562492816195';
-  const AMAZON_URL = 'https://amz.now/Ganeshankh';
+  const AMAZON_URL = 'https://www.amazon.in/dp/B0H58FY23F';
+
+  document.addEventListener('DOMContentLoaded', function () {
+    document.querySelectorAll('[data-cta]').forEach(function (btn) {
+      btn.setAttribute('href', AMAZON_URL);
+    });
+  });
 
   // --- Meta base pixel (queue is set up immediately; the actual
   // fbevents.js fetch/parse is deferred to idle time so it doesn't
@@ -19,8 +25,15 @@
   !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
   n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
   n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];
-  function loadPixelScript(){t=b.createElement(e);t.async=!0;t.src=v;
-    s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s);}
+  var pixelLoaded=false;
+  function loadPixelScript(){
+    if(pixelLoaded)return;pixelLoaded=true;
+    t=b.createElement(e);t.async=!0;t.src=v;
+    s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s);
+  }
+  ['pointerdown','touchstart','scroll'].forEach(function(evt){
+    f.addEventListener(evt,loadPixelScript,{once:true,passive:true});
+  });
   if('requestIdleCallback' in f){f.requestIdleCallback(loadPixelScript,{timeout:2000});}
   else{f.addEventListener('load',loadPixelScript);}
   }(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
@@ -40,12 +53,18 @@ font for the main thread, same as the Meta Pixel above) --- -->
   gtag('js', new Date());
   gtag('config', 'G-KVQKMC0884');
 
+  var ga4Loaded = false;
   function loadGA4Script(){
+    if (ga4Loaded) return;
+    ga4Loaded = true;
     var ga4 = document.createElement('script');
     ga4.async = true;
     ga4.src = 'https://www.googletagmanager.com/gtag/js?id=G-KVQKMC0884';
     document.head.appendChild(ga4);
   }
+  ['pointerdown','touchstart','scroll'].forEach(function(evt){
+    window.addEventListener(evt, loadGA4Script, {once:true, passive:true});
+  });
   if ('requestIdleCallback' in window){
     requestIdleCallback(loadGA4Script, {timeout: 2000});
   } else {
@@ -1113,17 +1132,9 @@ font for the main thread, same as the Meta Pixel above) --- -->
   });
 
   // Outbound click to Amazon — the money event
-  const couponCodeEl = document.querySelector('[data-code]');
-  const COUPON_CODE = couponCodeEl ? couponCodeEl.dataset.code : '';
-
   document.querySelectorAll('[data-cta]').forEach(function (btn) {
-    btn.addEventListener('click', function (e) {
-      e.preventDefault();
+    btn.addEventListener('click', function () {
       const position = btn.dataset.cta;
-
-      if (COUPON_CODE && navigator.clipboard) {
-        navigator.clipboard.writeText(COUPON_CODE).catch(function () {});
-      }
 
       fbq('track', 'InitiateCheckout', {
         content_name: 'Silver Ganesh Shankh',
@@ -1131,14 +1142,12 @@ font for the main thread, same as the Meta Pixel above) --- -->
         value: 1399,
         currency: 'INR'
       });
+
       if (typeof gtag === 'function') gtag('event', 'initiate_checkout', {
         button_position: position,
         value: 1399,
         currency: 'INR'
       });
-
-      // Small delay so the event reaches Meta before the page unloads
-      setTimeout(function () { window.location.href = AMAZON_URL; }, 300);
     });
   });
 })();

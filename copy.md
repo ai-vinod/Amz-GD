@@ -1,53 +1,57 @@
 # Landing page copy — GoDivinely Ganesh Shankh
 
+Version 2 — Diwali / prosperity positioning. Updated 2026-10-22.
+
 Build to this text exactly. Do not rewrite, shorten, or "improve" any line.
-Section names match the sections in `brief.md`.
+
+## What changed from v1 — apply these to `index.html`
+
+1. **Hero headline, "Why it's worth gifting" and "Gifting occasions" are rewritten.**
+   Replace that text with the versions below.
+2. **The "How the code works" section is deleted.** Remove the section entirely.
+3. **There is no discount code at all.** Remove every trace of it from the page:
+   the code chip, the tap-to-copy script and its "Copied" state, any
+   "apply at checkout" or "₹300 off" wording, and the `CopyCode` pixel event.
+   The sticky bar and closing card keep only the price and the button.
+4. **Hero subline, finish comparison and closing line are unchanged from v1.**
+   Leave the existing text as it is.
+5. Trust strip order changed — see below.
+
+Sections below are the full, final copy for the page.
 
 ---
 
 ## Hero headline
 
-Most Gifts Get Stored. This One Gets Displayed.
+This Diwali, Gift The Symbol Of Lakshmi, In Silver
 
 ## Hero subline
 
-A silver-plated Ganesh Shankh - auspicious, elegant, and quietly
-expensive-looking. The kind of gift that earns a permanent place in the room.
+A silver-plated Ganesh Shankh - auspicious, elegant, and quietly expensive-looking. The kind of gift that earns a permanent place in the room.
 
 ## Trust strip
 
-5.5 inch / 13.5 cm · Elite silver-plated finish · Arrives in gift box · Delivered by Amazon India
+5.5 inch / 13.5 cm · Velvet gift box included · Elite silver-plated finish · Delivered by Amazon India
 
 ## Why it's worth gifting
 
-Status is not something you say. It's something people see.
+Tradition places the shankh at the centre of prosperity - auspicious, blessed, the sound that is said to invite Lakshmi into a home.
 
-A Ganesh Shankh in polished silver plating signals taste, tradition and prosperity in one object.
+A silver-plated Ganesh Shankh is refined enough for the most modern home and sacred enough for the most traditional one.
 
-It's auspicious enough for the most traditional home, refined enough for the most modern one. 
-
-People will place it where visitors look first, and yours will be the gift they mention.
+People will place it where visitors look first - and yours will be the gift they mention.
 
 ## Gifting occasions
 
-Best gift for Griha pravesh, weddings, anniversaries, Diwali hampers, and birthdays.
-
-It suits elders who value tradition and younger couples who want their home to look considered. You can also keep this in your own pooja room.
+Diwali and Lakshmi Puja first, and everything else too - griha pravesh and housewarmings, weddings and anniversaries, new shop and office openings, milestone birthdays, retirements, and the client or boss you cannot afford to gift casually.
 
 ## Finish comparison
 
 A plain shankh looks like a puja shelf item. A rich silver-plated finish over intricate Ganesh detailing changes the category entirely - it reflects light, photographs beautifully, and reads as a collector's piece.
 
-## How the code works
-
-1. Copy your exclusive ₹300 code from this page
-2. Click the button to open the Amazon listing
-3. Apply the code at checkout before paying
-
 ## Closing line
 
-Ordinary gifts get thanked once.
-This one gets admired every day.
+Ordinary gifts get thanked once. This one gets admired every day.
 
 ---
 
@@ -56,22 +60,13 @@ This one gets admired every day.
 Buy on Amazon
 
 (Matches the closing card of the client's product video. Use the same words on
-every button - hero, steps, closing, sticky bar.)
+every button - hero, closing, sticky bar.)
 
-## Reviews
+## Sticky mobile bar
 
-1. Name: Sneha
-Title: Stunning vastu showpiece for home
-Body: I Was hunting for a decent vastu showpiece for home that doesn't look plastic-y. This ganesh shankh original is solid, weighty, the silver detailing is clean. Velvet box packaging makes it gift-ready instantly. Worth every rupee.
+₹1,899    [Buy on Amazon]
 
-2. Name: Alfaran
-Title: Best product for gifting
-Body: Best product to gift friends and house warming party in budget the product quality is good
-
-3. Name: Asha
-Title: Gifted for home inauguration
-Body: Bought this for home inauguration gift items & it was the most appreciated gift at the function. The velvet box, the certificate and everything together felt very premium. The ganesh shankh itself is sturdy and looks expensive. Already ordered two more for Diwali.
-
-4. Name: Sindhu
-Title: Perfect silver shankh for pooja. Looks premium
-Body: We keep a shankh in our puja room and this one is genuinely different. The Ganesha work on it is detailed and the silver doesn't look cheap. Been two months and no tarnishing. I've bought similar items from local stores that dulled in weeks. This one still looks the same as day one. Very happy.
+> NOTE: confirm the price before the build. The ₹200 increase to ₹1,899 was
+> made to fund the ₹300 code. With the code gone, the listing price may go
+> back to ₹1,699 — use whatever the live Amazon price is, or omit the price
+> from the sticky bar entirely and show only the button.

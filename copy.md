@@ -31,19 +31,17 @@ A silver-plated Ganesh Shankh - auspicious, elegant, and quietly expensive-looki
 
 ## Trust strip
 
-5.5 inch / 13.5 cm · Velvet gift box included · Elite silver-plated finish · Delivered by Amazon India
+5.5 inch / 13.5 cm · Velvet gift box · Elite Silver-plated finish · Delivered by Amazon India
 
 ## Why it's worth gifting
 
 Tradition places the shankh at the centre of prosperity - auspicious, blessed, the sound that is said to invite Lakshmi into a home.
 
-A silver-plated Ganesh Shankh is refined enough for the most modern home and sacred enough for the most traditional one.
-
-People will place it where visitors look first - and yours will be the gift they mention.
+A silver-plated Ganesh Shankh is auspicious enough for the most modern home and sacred enough for the most traditional one.
 
 ## Gifting occasions
 
-Diwali and Lakshmi Puja first, and everything else too - griha pravesh and housewarmings, weddings and anniversaries, new shop and office openings, milestone birthdays, retirements, and the client or boss you cannot afford to gift casually.
+Diwali and Lakshmi Puja first, and everything else too - griha pravesh and housewarmings, anniversaries and weddings, new shop and office openings, milestone birthdays, and the client or boss you cannot afford to gift casually.
 
 ## Finish comparison
 

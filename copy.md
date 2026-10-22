@@ -23,7 +23,7 @@ Sections below are the full, final copy for the page.
 
 ## Hero headline
 
-This Diwali, Gift The Symbol Of Lakshmi, In Silver
+This Diwali, Gift A Silver-Plated Ganesha
 
 ## Hero subline
 

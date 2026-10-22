@@ -1008,6 +1008,9 @@ font for the main thread, same as the Meta Pixel above) --- -->
     white-space:nowrap;
   }
 
+  /* logos are links back to the top of the page */
+  a.logo-chip,a.logo-link{display:block;text-decoration:none;cursor:pointer;-webkit-tap-highlight-color:transparent;}
+
   @media (prefers-reduced-motion:reduce){
     .b-diya .flame,.live-pill i,.cta-btn,.cta-btn::after{animation:none;}
     #fx{display:none;}
@@ -1019,7 +1022,7 @@ font for the main thread, same as the Meta Pixel above) --- -->
 <div class="sparkles" aria-hidden="true"><i style="--x:6%;--s:10px;--t:13s;--d:0s;--dx:30px"></i><i style="--x:14%;--s:7px;--t:17s;--d:3s;--dx:-24px"></i><i style="--x:23%;--s:12px;--t:15s;--d:6s;--dx:36px;--c:#FFD27A"></i><i style="--x:31%;--s:6px;--t:19s;--d:1s;--dx:-20px"></i><i style="--x:40%;--s:9px;--t:14s;--d:8s;--dx:28px"></i><i style="--x:48%;--s:11px;--t:18s;--d:4s;--dx:-34px;--c:#FFC1D9"></i><i style="--x:57%;--s:7px;--t:16s;--d:10s;--dx:22px"></i><i style="--x:65%;--s:10px;--t:13s;--d:2s;--dx:-30px"></i><i style="--x:73%;--s:6px;--t:20s;--d:7s;--dx:26px;--c:#FFD27A"></i><i style="--x:81%;--s:12px;--t:15s;--d:5s;--dx:-28px"></i><i style="--x:89%;--s:8px;--t:17s;--d:9s;--dx:24px"></i><i style="--x:95%;--s:10px;--t:14s;--d:12s;--dx:-22px;--c:#FFC1D9"></i></div>
 
 <header class="site">
-  <span class="logo-chip"><img src="Images/web/logo.webp" alt="GoDivinely" width="220" height="130"></span>
+  <a class="logo-chip" href="#" aria-label="GoDivinely - back to top"><img src="Images/web/logo.webp" alt="GoDivinely" width="220" height="130"></a>
   <span class="live-pill"><i></i>Sale is live</span>
 </header>
 <svg class="defs-svg" aria-hidden="true"><defs><linearGradient id="dg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFE29A"/><stop offset="1" stop-color="#C98A2A"/></linearGradient><radialGradient id="df" cx=".5" cy=".65" r=".6"><stop offset="0" stop-color="#FFF6D2"/><stop offset=".45" stop-color="#FFC94D"/><stop offset="1" stop-color="#FF6A1A"/></radialGradient></defs></svg>
@@ -1204,7 +1207,7 @@ font for the main thread, same as the Meta Pixel above) --- -->
 </div>
 
 <footer class="site">
-  <img src="Images/web/logo.webp" alt="GoDivinely" width="220" height="130" loading="lazy">
+  <a class="logo-link" href="#" aria-label="GoDivinely - back to top"><img src="Images/web/logo.webp" alt="GoDivinely" width="220" height="130" loading="lazy"></a>
   <p>Available on Amazon.in. Payment and delivery handled entirely by Amazon.</p>
   <p>As an Amazon Associate I earn from qualifying purchases.</p>
 </footer>

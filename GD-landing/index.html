@@ -1234,7 +1234,6 @@ font for the main thread, same as the Meta Pixel above) --- -->
   if (flashSaleEl) {
     const FLASH_SALE_DURATION_MS = 24 * 60 * 60 * 1000;
     const FLASH_SALE_END_KEY = 'flashSaleEnd24h';
-    const FLASH_SALE_FIRED_KEY = 'flashSaleExpiredFired24h';
     const rowEl = document.getElementById('flashSaleRow');
     const timerEl = document.getElementById('flashSaleTimer');
     const endedEl = document.getElementById('flashSaleEnded');
@@ -1250,11 +1249,6 @@ font for the main thread, same as the Meta Pixel above) --- -->
     function showFlashSaleEnded() {
       rowEl.hidden = true;
       endedEl.hidden = false;
-      if (!sessionStorage.getItem(FLASH_SALE_FIRED_KEY)) {
-        sessionStorage.setItem(FLASH_SALE_FIRED_KEY, '1');
-        fbq('trackCustom', 'TimerExpired');
-        if (typeof gtag === 'function') gtag('event', 'timer_expired');
-      }
     }
 
     function tickFlashSale() {

@@ -1253,6 +1253,7 @@ font for the main thread, same as the Meta Pixel above) --- -->
       if (!sessionStorage.getItem(FLASH_SALE_FIRED_KEY)) {
         sessionStorage.setItem(FLASH_SALE_FIRED_KEY, '1');
         fbq('trackCustom', 'TimerExpired');
+        if (typeof gtag === 'function') gtag('event', 'timer_expired');
       }
     }
 
@@ -1404,23 +1405,41 @@ font for the main thread, same as the Meta Pixel above) --- -->
     targets.forEach(function (t) { t.classList.add('reveal'); io.observe(t); });
   }
 
-  // Outbound click to Amazon — the money event
+  // Outbound click to Amazon — the money event.
+  // A pointerdown on a CTA already bubbles to the window-level listeners that
+  // load the pixel / GA4 scripts, so they get a head start before this click.
+  // Normal clicks are held for 250ms so the tracking requests can leave before
+  // the page unloads; modified clicks (new tab etc.) are left to the browser.
+  let ctaRedirecting = false; // set on the first intercepted click; guards double-taps
   document.querySelectorAll('[data-cta]').forEach(function (btn) {
-    btn.addEventListener('click', function () {
+    btn.addEventListener('click', function (e) {
+      if (e.ctrlKey || e.metaKey || e.shiftKey || e.altKey || e.button !== 0) return;
+      e.preventDefault();
+      if (ctaRedirecting) return; // a second tap inside the redirect window: no duplicate events
+      ctaRedirecting = true;
+
       const position = btn.dataset.cta;
 
-      fbq('track', 'InitiateCheckout', {
-        content_name: 'Silver Ganesh Shankh',
-        button_position: position,
-        value: 1599,
-        currency: 'INR'
-      });
+      try {
+        fbq('track', 'InitiateCheckout', {
+          content_name: 'Silver Ganesh Shankh',
+          button_position: position,
+          value: 1599,
+          currency: 'INR'
+        });
+      } catch (err) {}
 
-      if (typeof gtag === 'function') gtag('event', 'initiate_checkout', {
-        button_position: position,
-        value: 1599,
-        currency: 'INR'
-      });
+      try {
+        if (typeof gtag === 'function') gtag('event', 'initiate_checkout', {
+          button_position: position,
+          value: 1599,
+          currency: 'INR',
+          transport_type: 'beacon'
+        });
+      } catch (err) {}
+
+      // always redirect, even if tracking threw or the scripts never loaded
+      setTimeout(function () { window.location.href = AMAZON_URL; }, 250);
     });
   });
 })();
